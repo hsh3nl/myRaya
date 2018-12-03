@@ -27,6 +27,12 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# MANUALLY ADDED GEMS
+# figaro gem for securing environment keys
+gem 'figaro' 
+
+# END
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
