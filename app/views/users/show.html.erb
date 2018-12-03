@@ -1,0 +1,7 @@
+<p>Hi, <%= @user.first_name%></p>
+
+<p>First name: <%= @user.first_name%></p>
+<p>Last name: <%= @user.last_name%></p>
+<p>Email: <%= @user.email%></p>
+
+<%= button_to "Edit Profile", edit_user_path(@user), method: :get, class:'btn btn-sm btn-light' %>

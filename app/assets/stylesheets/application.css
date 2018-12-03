@@ -17,3 +17,9 @@
  body {
     font-family: 'Oxygen', sans-serif;
  }
+
+ .alert {
+   position:fixed; 
+   z-index:9999; 
+   border-radius:0.5em;
+}
