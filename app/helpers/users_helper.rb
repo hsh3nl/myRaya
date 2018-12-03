@@ -1,6 +1,4 @@
-class ApplicationController < ActionController::Base
-
-    # Object method to check if there is someone signed in
+module UsersHelper
     def signed_in?
         user_id = cookies[:user_id]
         user = User.find_by(id: user_id)
@@ -23,5 +21,4 @@ class ApplicationController < ActionController::Base
             nil
         end
     end
-
 end

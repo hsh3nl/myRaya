@@ -31,6 +31,9 @@ gem 'jbuilder', '~> 2.5'
 # figaro gem for securing environment keys
 gem 'figaro' 
 
+# bcrypt for password encryption
+gem 'bcrypt'
+
 # END
 
 # Use ActiveStorage variant
