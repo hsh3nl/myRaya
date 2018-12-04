@@ -9,17 +9,19 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.new(
+        user = User.new(
             first_name: user_params[:first_name],
             last_name: user_params[:last_name],
             email: user_params[:email],
+            gender: user_params[:gender],
+            tel_no: user_params[:tel_no],
             password: user_params[:password],
             password_confirmation: user_params[:password_confirmation]
             ) 
-        if @user.save
+        if user.save
             redirect_to sign_in_path
         else
-            flash[:notice] = @user.errors.full_messages.join(' & ')
+            flash[:notice] = user.errors.full_messages
             redirect_to sign_up_path
         end
     end
@@ -32,10 +34,10 @@ class UsersController < ApplicationController
         @user = User.find_by(id: current_user.id)
         password = user_params[:password]
         if password == user_params[:password_confirmation] && @user.try(:authenticate, password)
-            if @user.update(first_name: user_params[:first_name], last_name: user_params[:last_name], email: user_params[:email])
+            if @user.update(first_name: user_params[:first_name], last_name: user_params[:last_name], email: user_params[:email], tel_no: user_params[:tel_no], gender: user_params[:gender])
                 redirect_to @user
             else 
-                flash[:notice] = @user.errors.full_messages.join(' & ')
+                flash[:notice] = @user.errors.full_messages
                 redirect_to edit_user_path(@user)
             end
         else
@@ -44,9 +46,18 @@ class UsersController < ApplicationController
         end
     end
 
+    def dashboard
+        if signed_in? == false
+            redirect_to root_path
+        end
+
+        @user = current_user
+        @events = @user.events
+    end
+
     private
 
     def user_params
-        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+        params.require(:user).permit(:first_name, :last_name, :gender, :email, :tel_no, :password, :password_confirmation)
     end
 end

@@ -24,4 +24,11 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    #checks if user matches that of the accessed page for events
+    def check_user_event(e)
+        if current_user == nil || current_user.id != e.user_id
+            redirect_to root_path
+        end
+    end
+
 end

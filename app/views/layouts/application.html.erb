@@ -17,19 +17,68 @@
   </head>
 
   <header>
-    <% if signed_in? %>
-    <%= button_to "Sign Up", sign_up_path, method: :get, class:'btn btn-sm btn-light' %>
-    <%= button_to "Sign Out", sign_out_path, method: :delete, class:'btn btn-sm btn-light' %>
-    <% else %>
-    <%= button_to "Sign In", sign_in_path, method: :get, class:'btn btn-sm btn-light' %>
-    <%= button_to "Sign Up", sign_up_path, method: :get, class:'btn btn-sm btn-light' %>
-    <% end %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <a class="navbar-brand " href="/">
+        <img src=<%=image_url('logo.png')%> width="30" height="30" class="d-inline-block align-top" alt="">
+        myRaya
+      </a>
+
+      <form class="form-inline mr-auto">
+        <input class="form-control mr-sm-2" type="search" placeholder="Your journey starts here" aria-label="Search">
+      </form>  
+      
+      <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon btn-sm"></span>
+      </button>    
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <% if signed_in? %> 
+            <li class="nav-item">
+              <a class="nav-link btn btn-sm btn-light" href=<%=new_event_path%>>Make Event!</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-sm btn-light" href="/users/<%=current_user.id%>/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-sm btn-light" href="/users/<%=current_user.id%>">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-sm btn-light" href=<%=sign_out_path%> data-method="delete">Sign Out</a>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <a class="nav-link btn btn-sm btn-light" href=<%=sign_up_path%>>Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-sm btn-light" href=<%=sign_in_path%>>Sign In</a>
+            </li>
+          <% end %> 
+        </ul>
+      </div>      
+    </nav>    
 
     <% if flash[:notice] %>
       <div class='d-flex justify-content-center align-items-center'>
-        <div class="alert alert-warning alert-dismissible fade show col-5" role="alert">
-          <strong>Cannot complete sign up</strong>             
-              <div class="notice"><%= flash[:notice] %></div>
+        <div class="alert alert-warning alert-dismissible fade show col-3" role="alert">
+          <strong>Notice Board:</strong> 
+          <hr> 
+            <% flash[:notice].each do |n|%>
+              <div class="notice"><%= n %></div>
+            <% end %>           
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>    
+    <% elsif flash[:success] %>
+      <div class='d-flex justify-content-center align-items-center'>
+        <div class="alert alert-success alert-dismissible fade show col-3" role="alert">
+          <strong>Success!</strong> 
+          <hr> 
+            <% flash[:success].each do |n|%>
+              <div class="notice"><%= n %></div>
+            <% end %>           
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

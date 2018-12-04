@@ -34,6 +34,9 @@ gem 'figaro'
 # bcrypt for password encryption
 gem 'bcrypt'
 
+# faker gem for populating data
+gem 'faker'
+
 # END
 
 # Use ActiveStorage variant

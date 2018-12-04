@@ -1,0 +1,57 @@
+<%= form_with model:@event, local: true  do |form| %>
+  <p>
+    <%= form.label :event_name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_field :description %>
+  </p>  
+
+  <p>
+    <%= form.label :address %><br>
+    <%= form.text_field :address %>
+  </p>
+
+  <p>
+    <%= form.label :postal_code %><br>
+    <%= form.text_field :postal_code %>
+  </p>    
+
+  <p>
+    <%= form.label :state %><br>
+    <%= form.text_field :state %>
+  </p>  
+
+  <p>
+    <%= form.label :date %><br>
+    <%= form.date_field :date %>
+  </p>
+  
+  <p>
+    <%= form.label :Start_time %><br>
+    <%= form.number_field :start_hr %>
+    <%= form.number_field :start_min %>
+  </p>
+
+  <p>
+    <%= form.label :End_time %><br>
+    <%= form.number_field :end_hr %>
+    <%= form.number_field :end_min %>
+  </p>
+
+  <p>
+    <%= form.label :max_participants %><br>
+    <%= form.number_field :max_pax %>
+  </p> 
+
+  <p>
+    <%= form.label :price_per_pax %><br>
+    <%= form.number_field :price_per_pax %>
+  </p>    
+ 
+  <p>
+    <%= form.submit 'Submit', class:' btn btn-sm btn-outline-success'%>
+  </p>
+<% end %>
