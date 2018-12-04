@@ -19,7 +19,8 @@
  }
 
  .alert {
-   position:fixed; 
-   z-index:9999; 
-   border-radius:0.5em;
+   position: fixed; 
+   top: 4em;
+   z-index: 9999; 
+   border-radius: 0.5em;
 }

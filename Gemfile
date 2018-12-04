@@ -34,6 +34,14 @@ gem 'figaro'
 # bcrypt for password encryption
 gem 'bcrypt'
 
+# faker gem for populating data
+gem 'faker'
+
+# image uploading with carrierwave
+gem 'carrierwave'
+gem 'file_validators'
+gem 'mini_magick'
+
 # END
 
 # Use ActiveStorage variant

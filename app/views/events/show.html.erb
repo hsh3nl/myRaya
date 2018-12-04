@@ -1,0 +1,27 @@
+<h3>Celebration Details</h3>
+
+<% if @event.attachments? %>
+  <ul>
+    <% @event.attachments.each do |attachment| %>
+      <li><%= link_to(image_tag(attachment.card.url, alt: 'Image'), attachment.url, target: '_blank') %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p>Event Name: <%= @event.name%></p>
+<p>Description: <%= @event.description%></p>
+<p>Address: <%= @event.address%></p>
+<p>Postal Code: <%= @event.postal_code%></p>
+<p>State: <%= @event.state%></p>
+<p>Date: <%= @event.date%></p>
+<p>Starts: <%= @event.start_hr%>:<%= @event.start_min%></p>
+<p>Ends: <%= @event.end_hr%>:<%= @event.end_min%></p>
+<p>Price per pax: MYR<%= @event.price_per_pax%></p>
+<p>Max Capacity: <%= @event.max_pax%> Pax</p>
+
+<p>Hosted by:</p>
+<p><%=@event.user.first_name%> <%=@event.user.last_name%></p>
+<% if current_user && current_user.id == @event.user_id%>
+    <%= button_to "Edit Event", edit_event_path(@event), method: :get, class:'btn btn-sm btn-light' %>
+<% end %>
+<%= button_to "Join Event!", new_event_booking_path(@event), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>    

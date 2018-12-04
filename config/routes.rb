@@ -2,10 +2,18 @@ Rails.application.routes.draw do
   # Home page route 
   root 'welcome#index'
 
-  # User route
+  # User routes
   resources :users, only: [:show, :create, :edit, :update]
 
-  #Session route
+  # Custom route: Dashboard for users
+  get '/users/:id/dashboard' => "users#dashboard", as: 'dashboard'
+
+  # Events routes nested with booking routes
+  resources :events do 
+    resources :bookings, only: [:show, :new, :edit, :create]
+  end
+
+  #Session routes
   get "/sign_in" => "sessions#new", as: "sign_in"
   post "/sign_in" => "sessions#create"
   delete "/sign_out" => "sessions#destroy", as: "sign_out"

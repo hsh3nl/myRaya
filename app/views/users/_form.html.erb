@@ -7,6 +7,16 @@
   <p>
     <%= form.label :last_name %><br>
     <%= form.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= form.label :gender %><br>
+    <%= form.text_field :gender %>
+  </p>  
+
+  <p>
+    <%= form.label :contact_number %><br>
+    <%= form.text_field :tel_no %>
   </p>  
 
   <p>
@@ -23,6 +33,20 @@
     <%= form.label :retype_password %><br>
     <%= form.password_field :password_confirmation %>
   </p>
+
+  <p>
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </p>
+  <% if @user.image? %>
+    <%= image_tag @user.image.thumb.url %>
+    <div>
+      <%= label_tag :remove_image do %>
+        Remove image
+        <%= form.check_box :remove_image %>
+      <% end %>
+    </div>
+  <% end %>
  
   <p>
     <%= form.submit 'Submit', class:' btn btn-sm btn-outline-success'%>
