@@ -1,5 +1,13 @@
 <h3>Celebration Details</h3>
 
+<% if @event.attachments? %>
+  <ul>
+    <% @event.attachments.each do |attachment| %>
+      <li><%= link_to(image_tag(attachment.card.url, alt: 'Image'), attachment.url, target: '_blank') %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <p>Event Name: <%= @event.name%></p>
 <p>Description: <%= @event.description%></p>
 <p>Address: <%= @event.address%></p>

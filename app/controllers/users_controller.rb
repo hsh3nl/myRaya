@@ -15,6 +15,7 @@ class UsersController < ApplicationController
             email: user_params[:email],
             gender: user_params[:gender],
             tel_no: user_params[:tel_no],
+            image: user_params[:image],
             password: user_params[:password],
             password_confirmation: user_params[:password_confirmation]
             ) 
@@ -27,14 +28,15 @@ class UsersController < ApplicationController
     end
 
     def edit
-        @user = User.find_by(id: current_user.id)
+        @user = User.find_by(id: params[:id])
+        check_user_profile(@user)
     end
 
     def update
         @user = User.find_by(id: current_user.id)
         password = user_params[:password]
         if password == user_params[:password_confirmation] && @user.try(:authenticate, password)
-            if @user.update(first_name: user_params[:first_name], last_name: user_params[:last_name], email: user_params[:email], tel_no: user_params[:tel_no], gender: user_params[:gender])
+            if @user.update(first_name: user_params[:first_name], last_name: user_params[:last_name], email: user_params[:email], tel_no: user_params[:tel_no], gender: user_params[:gender], image: user_params[:image])
                 redirect_to @user
             else 
                 flash[:notice] = @user.errors.full_messages
@@ -47,18 +49,17 @@ class UsersController < ApplicationController
     end
 
     def dashboard
-        if signed_in? == false
-            redirect_to root_path
+        @user = User.find_by(id: params[:id])
+        check_user_profile(@user)
+        if @user 
+            @events = @user.events
+            @bookings = @user.bookings
         end
-
-        @user = current_user
-        @events = @user.events
-        @bookings = @user.bookings
     end
 
     private
 
     def user_params
-        params.require(:user).permit(:first_name, :last_name, :gender, :email, :tel_no, :password, :password_confirmation)
+        params.require(:user).permit(:first_name, :last_name, :gender, :email, :tel_no, :password, :password_confirmation, :image, :remove_image)
     end
 end

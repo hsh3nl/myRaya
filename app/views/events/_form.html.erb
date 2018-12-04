@@ -50,6 +50,11 @@
     <%= form.label :price_per_pax %><br>
     <%= form.number_field :price_per_pax %>
   </p>    
+
+  <p>
+    <%= form.label :attachments %>
+    <%= form.file_field :attachments, multiple: true %>
+  </p>
  
   <p>
     <%= form.submit 'Submit', class:' btn btn-sm btn-outline-success'%>

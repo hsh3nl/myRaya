@@ -17,6 +17,7 @@ ActiveRecord::Base.transaction do
     user['email'] = Faker::Internet.email
     user['gender'] = ['Male', 'Female', 'Prefer not to say'].sample
     user['tel_no'] = Faker::PhoneNumber.phone_number
+    user['image'] = [Rails.root.join("app/assets/images/seeds/seed1.png").open, Rails.root.join("app/assets/images/seeds/seed2.png").open, Rails.root.join("app/assets/images/seeds/seed3.png").open, ''].sample
     
     User.create(user)
   end
@@ -41,6 +42,7 @@ ActiveRecord::Base.transaction do
     event['end_min'] = (0..59).to_a.sample
     event['max_pax'] = rand(1..5)
     event['price_per_pax'] = rand(30..300)
+    event['attachments'] = [[Rails.root.join("app/assets/images/seeds/cny1.jpg").open,Rails.root.join("app/assets/images/seeds/cny2.png").open],[Rails.root.join("app/assets/images/seeds/dee1.jpg").open,Rails.root.join("app/assets/images/seeds/dee2.jpeg").open],[Rails.root.join("app/assets/images/seeds/raya1.png").open,Rails.root.join("app/assets/images/seeds/raya2.png").open]].sample
 
     event['user_id'] = uids.sample
 

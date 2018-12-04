@@ -1,4 +1,9 @@
 <p>Hi, <%= @user.first_name%></p>
+<% if @user.image? %>
+<%= image_tag(@user.image.url, alt: 'Image')%>
+<% else %>
+<%= image_tag(image_url("no_pix.png"), alt: 'Image')%>
+<% end %>
 
 <p>First name: <%= @user.first_name%></p>
 <p>Last name: <%= @user.last_name%></p>
@@ -6,4 +11,6 @@
 <p>Contact Number: <%= @user.tel_no%></p>
 <p>Email: <%= @user.email%></p>
 
+<% if current_user.id == @user.id %>
 <%= button_to "Edit Profile", edit_user_path(@user), method: :get, class:'btn btn-sm btn-light' %>
+<% end %>
