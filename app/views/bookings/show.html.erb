@@ -1,0 +1,27 @@
+<h3>Celebration Details</h3>
+
+<p>Event Name: <%= @event.name%></p>
+<p>Description: <%= @event.description%></p>
+<p>Address: <%= @event.address%></p>
+<p>Postal Code: <%= @event.postal_code%></p>
+<p>State: <%= @event.state%></p>
+<p>Date: <%= @event.date%></p>
+<p>Starts: <%= @event.start_hr%>:<%= @event.start_min%></p>
+<p>Ends: <%= @event.end_hr%>:<%= @event.end_min%></p>
+<p>Price per pax: MYR<%= @event.price_per_pax%></p>
+<p>Max Capacity: <%= @event.max_pax%> Pax</p>
+
+<p>Hosted by:</p>
+<p><%=@event.user.first_name%> <%=@event.user.last_name%></p>
+<br>
+<br>
+<h3>Booking Details</h3>
+<p>Representative name: <%= @user.first_name%> <%= @user.last_name%></p>
+<p>Number of participants: <%= @booking.no_of_pax%></p>
+<p>Special Request (if any): <%= @booking.spec_req%></p>
+<br>
+
+
+
+
+

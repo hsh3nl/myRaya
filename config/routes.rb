@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   # Events routes nested with booking routes
   resources :events do 
-    resources :bookings, only: [:show, :new, :edit, :create, :update, :destroy]
+    resources :bookings, only: [:show, :new, :edit, :create]
   end
 
   #Session routes

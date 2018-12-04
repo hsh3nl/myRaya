@@ -53,6 +53,7 @@ class UsersController < ApplicationController
 
         @user = current_user
         @events = @user.events
+        @bookings = @user.bookings
     end
 
     private

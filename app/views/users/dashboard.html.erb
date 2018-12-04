@@ -1,36 +1,57 @@
 <p>Hi, <%= @user.first_name%></p>
 
-<table>
-<tr>
-    <th>Event</th>
-    <th>Description</th>
-    <th>Address</th>
-    <th>Postcode</th>
-    <th>State</th>
-    <th>Date</th>
-    <th>Starts</th>
-    <th>Ends</th>
-    <th>RM per pax</th>
-    <th>Max Pax</th> 
-    <th>Action</th>    
-</tr>
-<% @events.each do |e| %>
-<tr>
-    <th><%=e.name%></th>
-    <th><%=e.description%></th>
-    <th><%=e.address%></th>
-    <th><%=e.postal_code%></th>
-    <th><%=e.state%></th>
-    <th><%=e.date%></th>
-    <th><%=e.start_hr%>:<%=e.start_min%></th>
-    <th><%=e.end_hr%>:<%=e.end_min%></th>
-    <th><%=e.price_per_pax%></th>
-    <th><%=e.max_pax%></th> 
-    <th>
-        <%= button_to "Show", event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>    
-        <%= button_to "Edit", edit_event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>
-        <%= button_to "Remove", event_path(e), method: :delete, data: { confirm: "Are you sure?" }, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>
-    </th>   
-</tr>
+<h2>My Events</h2>
+<% if @events %>
+    <table>
+    <tr>
+        <th>Event</th>
+        <th>Description</th>
+        <th>Address</th>
+        <th>Postcode</th>
+        <th>State</th>
+        <th>Date</th>
+        <th>Starts</th>
+        <th>Ends</th>
+        <th>RM per pax</th>
+        <th>Max Pax</th> 
+        <th>Action</th>    
+    </tr>
+    <% @events.each do |e| %>
+    <tr>
+        <th><%=e.name%></th>
+        <th><%=e.description%></th>
+        <th><%=e.address%></th>
+        <th><%=e.postal_code%></th>
+        <th><%=e.state%></th>
+        <th><%=e.date%></th>
+        <th><%=e.start_hr%>:<%=e.start_min%></th>
+        <th><%=e.end_hr%>:<%=e.end_min%></th>
+        <th><%=e.price_per_pax%></th>
+        <th><%=e.max_pax%></th> 
+        <th>
+            <%= button_to "Show", event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>    
+            <%= button_to "Edit", edit_event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>
+            <%= button_to "Remove", event_path(e), method: :delete, data: { confirm: "Are you sure?" }, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>
+        </th>   
+    </tr>
+    <% end %>
+    </table>
+<% else %>
+    <p>You have not hosted any celebrations.</p>
+    <%= button_to "Make Event", new_event_path, method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>    
 <% end %>
-</table>
+
+<br>
+<h2>My Bookings</h2>
+<% if @bookings %>
+    <% @bookings.each do |b| %>
+        <ul><li>
+        <p>Event: <%= b.event.name%> </p>
+        <p>Number of participants: <%= b.no_of_pax%></p>
+        <p>Special Request (if any): <%= b.spec_req%></p>
+        <%= button_to "Show", event_booking_path(b.event, b), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'} %>
+        </li></ul>
+    <% end %>
+<% else %>
+
+<% end %>

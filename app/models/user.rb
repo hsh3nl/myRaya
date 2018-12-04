@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
     has_many :events
+    has_many :bookings
 
     validates :first_name, :last_name, presence: true
     validates :email, presence: true, uniqueness: true, format: { with: /([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/,
