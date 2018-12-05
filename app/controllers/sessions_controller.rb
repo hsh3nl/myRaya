@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
         user = User.find_by(email: email).try(:authenticate, password)
         if user
             cookies[:user_id] = user.id
-            redirect_to user_path(user)
+            redirect_to dashboard_path(user)
         else
-            flash[:notice] = "Email or password incorrect"
+            flash[:notice] = ["Email or password incorrect"]
             redirect_to sign_in_path
         end
     end

@@ -42,6 +42,9 @@ gem 'carrierwave'
 gem 'file_validators'
 gem 'mini_magick'
 
+# Pagination with kaminari
+gem 'kaminari'
+
 # END
 
 # Use ActiveStorage variant

@@ -1,57 +1,83 @@
-<p>Hi, <%= @user.first_name%></p>
+<div class='d-flex justify-content-center align-items-center mt-5'>
+    
+    <div class="jumbotron col-11 ">
+        <h1 class="display-4">Dashboard</h1>
+        <p class="lead">A summary of your events and bookings</p>
+        <hr class="my-4">   
+        
+        <div class='row d-flex justify-content-around '>
+            <div class="card card-body col-lg-6 col-md-12 col-sm-12 " >
+                <div class="card-group">
+                        <h1 class="display-4 col-lg-12 col-md-6 col-sm-12">My Events</h1>
+                        <hr class="my-4 col-lg-11 col-md-11 col-sm-11">   
 
-<h2>My Events</h2>
-<% if @events %>
-    <table>
-    <tr>
-        <th>Event</th>
-        <th>Description</th>
-        <th>Address</th>
-        <th>Postcode</th>
-        <th>State</th>
-        <th>Date</th>
-        <th>Starts</th>
-        <th>Ends</th>
-        <th>RM per pax</th>
-        <th>Max Pax</th> 
-        <th>Action</th>    
-    </tr>
-    <% @events.each do |e| %>
-    <tr>
-        <th><%=e.name%></th>
-        <th><%=e.description%></th>
-        <th><%=e.address%></th>
-        <th><%=e.postal_code%></th>
-        <th><%=e.state%></th>
-        <th><%=e.date%></th>
-        <th><%=e.start_hr%>:<%=e.start_min%></th>
-        <th><%=e.end_hr%>:<%=e.end_min%></th>
-        <th><%=e.price_per_pax%></th>
-        <th><%=e.max_pax%></th> 
-        <th>
-            <%= button_to "Show", event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>    
-            <%= button_to "Edit", edit_event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>
-            <%= button_to "Remove", event_path(e), method: :delete, data: { confirm: "Are you sure?" }, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>
-        </th>   
-    </tr>
-    <% end %>
-    </table>
-<% else %>
-    <p>You have not hosted any celebrations.</p>
-    <%= button_to "Make Event", new_event_path, method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>    
-<% end %>
+                    
+                    <% @user.events.each do |e| %>
+                        <div class="col-lg-6 col-md-12 col-sm-12 mt-3 mb-2">
+                            <div class="card h-100 ">
 
-<br>
-<h2>My Bookings</h2>
-<% if @bookings %>
-    <% @bookings.each do |b| %>
-        <ul><li>
-        <p>Event: <%= b.event.name%> </p>
-        <p>Number of participants: <%= b.no_of_pax%></p>
-        <p>Special Request (if any): <%= b.spec_req%></p>
-        <%= button_to "Show", event_booking_path(b.event, b), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'} %>
-        </li></ul>
-    <% end %>
-<% else %>
+                                <% if e.attachments? %>
+                                    <%= link_to image_tag(e.attachments[0].card.url, alt: 'Image', class:"card-img-top"), event_path(e) %>
+                                <% else %>
+                                    <img class="card-img-top" src="http://placehold.it/400x400" alt="Card image cap">
+                                <% end %>                
 
-<% end %>
+                                <div class="card-body">
+                                    <a href=<%=event_path(e)%>><h4 class="card-title"><%=e.name%></h4></a>
+                                    <small><%=e.state%>, Malaysia</small><br>
+                                    <small><%=e.date%>, <%=e.start_hr%><%=e.start_min%>-<%=e.end_hr%>:<%=e.end_min%></small>
+                                    <hr>                
+                                    <p class="card-text">Bookings Made: <%=e.bookings.count%></p> 
+                                    <small class="text-muted">Participants: <%=e.max_pax - e.places_left%> </small>
+                                </div> 
+                                <div class="card-footer">
+                                    <small class="text-muted">Places left: <%=e.places_left%> </small>
+                                    <%= button_to "Show Event", event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;float:right;'}%>    
+                                </div>            
+                            </div>
+                        </div> 
+                    <% end %>
+                </div>
+            </div>
+
+            <div class="card card-body col-lg-5 col-md-12 col-sm-12 " >
+                <div class="card-group">
+                        <h1 class="display-4 col-lg-12 col-md-6 col-sm-12">My Bookings</h1>
+                        <hr class="my-4 col-lg-11 col-md-11 col-sm-11">   
+
+                    
+                    <% @user.bookings.each do |b| %>
+                        <div class="col-lg-6 col-md-12 col-sm-12 mt-3 mb-2">
+                            <div class="card h-100 ">
+
+                                <% if b.event.attachments? %>
+                                    <%= link_to image_tag(b.event.attachments[0].card.url, alt: 'Image', class:"card-img-top"), event_booking_path(b.event,b) %>
+                                <% else %>
+                                    <img class="card-img-top" src="http://placehold.it/400x400" alt="Card image cap">
+                                <% end %>                
+
+                                <div class="card-body">
+                                    <a href=<%=event_booking_path(b.event,b)%>><h4 class="card-title"><%=b.event.name%></h4></a>
+                                    <small><%=b.event.state%>, Malaysia</small><br>
+                                    <small><%=b.event.date%>, <%=b.event.start_hr%><%=b.event.start_min%>-<%=b.event.end_hr%>:<%=b.event.end_min%></small>
+                                    <hr>                
+                                    <p class="card-text">Places booked: <%=b.no_of_pax%></p> 
+                                </div> 
+                                <div class="card-footer">
+                                    <small class="text-muted">By: <%=b.event.user.first_name%> <%=b.event.user.last_name%> <br><%=b.event.user.tel_no%></small>
+                                    <%= button_to "Show Booking", event_booking_path(b.event,b), method: :get, class:'btn btn-sm btn-light', form: {style: 'float:right;'}%>    
+                                </div>            
+                            </div>
+                        </div> 
+                    <% end %>
+                </div>
+            </div>
+        
+            
+        </div>
+    </div>    
+</div>
+
+
+
+

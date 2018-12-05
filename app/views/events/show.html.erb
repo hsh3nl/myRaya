@@ -24,4 +24,9 @@
 <% if current_user && current_user.id == @event.user_id%>
     <%= button_to "Edit Event", edit_event_path(@event), method: :get, class:'btn btn-sm btn-light' %>
 <% end %>
-<%= button_to "Join Event!", new_event_booking_path(@event), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>    
+
+<% if @event.places_left > 0 %>
+  <%= button_to "Join Event!", new_event_booking_path(@event), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>  
+<% else %>
+  We are sorry, the event is fully booked.  
+<% end %>

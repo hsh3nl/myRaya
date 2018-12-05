@@ -1,34 +1,36 @@
+<div class="card-group">
+    
+    <% @events.each do |e| %>
+        <div class="col-lg-3 col-md-6 col-sm-12 mt-3 mb-2">
+            <div class="card h-100 ">
 
-<table>
-<tr>
-    <th>Event</th>
-    <th>Description</th>
-    <th>Address</th>
-    <th>Postcode</th>
-    <th>State</th>
-    <th>Date</th>
-    <th>Starts</th>
-    <th>Ends</th>
-    <th>RM per pax</th>
-    <th>Max Pax</th> 
-    <th>Action</th>    
-</tr>
-<% @events.each do |e| %>
-<tr>
-    <th><%=e.name%></th>
-    <th><%=e.description%></th>
-    <th><%=e.address%></th>
-    <th><%=e.postal_code%></th>
-    <th><%=e.state%></th>
-    <th><%=e.date%></th>
-    <th><%=e.start_hr%>:<%=e.start_min%></th>
-    <th><%=e.end_hr%>:<%=e.end_min%></th>
-    <th><%=e.price_per_pax%></th>
-    <th><%=e.max_pax%></th> 
-    <th>
-        <%= button_to "Show", event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>    
-        <%= button_to "Join Event!", new_event_booking_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;'}%>    
-    </th>   
-</tr>
-<% end %>
-</table>
+                <% if e.attachments? %>
+                    <%= link_to image_tag(e.attachments[0].card.url, alt: 'Image', class:"card-img-top"), event_path(e) %>
+                <% else %>
+                    <img class="card-img-top" src="http://placehold.it/400x400" alt="Card image cap">
+                <% end %>                
+
+                <div class="card-body">
+                    <a href=<%=event_path(e)%>><h4 class="card-title"><%=e.name%></h4></a>
+                    <%=e.state%>, Malaysia
+                    <p><%=e.date%>, <%=e.start_hr%><%=e.start_min%>-<%=e.end_hr%>:<%=e.end_min%> || RM<%=e.price_per_pax%> per pax </p>
+                    <hr>                
+                    <p class="card-text"><%=e.description%></p> 
+                    <small class="text-muted">Event by: <%=e.user.first_name%> <%=e.user.last_name%></small>
+                </div> 
+                <div class="card-footer">
+                    <small class="text-muted">Places left: <%=e.places_left%> </small>
+                    <%= button_to "Show", event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;float:right;'}%>    
+                    <%= button_to "Join Event!", new_event_booking_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;float:right;'}%>
+                </div>            
+            </div>
+        </div> 
+    <% end %>
+</div>
+
+<hr />
+<%= paginate @events %>
+<%= page_entries_info @events %>
+
+
+
