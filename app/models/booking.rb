@@ -19,7 +19,7 @@ class Booking < ApplicationRecord
     if available_pax == 0
       errors.add(:no_of_pax, "Sorry, the event is fully booked")
     elsif no_of_pax > available_pax
-      errors.add(:no_of_pax, "Sorry, the event has only #{available_pax} places left")
+      errors.add(:no_of_pax, "Sorry, the event has #{available_pax} place(s) left")
     end
   end
 end

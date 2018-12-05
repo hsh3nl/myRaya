@@ -1,16 +1,47 @@
-<p>Hi, <%= @user.first_name%></p>
-<% if @user.image? %>
-<%= image_tag(@user.image.url, alt: 'Image')%>
-<% else %>
-<%= image_tag(image_url("no_pix.png"), alt: 'Image')%>
-<% end %>
+<div class='d-flex justify-content-center align-items-center mt-5'>
+    
+    <div class="jumbotron col-8 ">
+        <h1 class="display-4">My Profile</h1>
+        <p class="lead">Edit profile details</p>
+        <hr class="my-4">   
+        
+        <div class='row d-flex justify-content-center '>
+        
+            <div class="card card-body col-lg-6 col-md-12 col-sm-12 mr-2 ml-2" >
+                <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+                <div id='profile-img'>
+                    <% if @user.image? %>
+                        <%= image_tag(@user.image.url, alt: 'Image', id:'profile-pix')%>
+                    <% else %>
+                        <%= image_tag(image_url("no_pix.png"), alt: 'Image')%>
+                    <% end %>
+                </div>
+                <br>
 
-<p>First name: <%= @user.first_name%></p>
-<p>Last name: <%= @user.last_name%></p>
-<p>Gender: <%= @user.gender%></p>
-<p>Contact Number: <%= @user.tel_no%></p>
-<p>Email: <%= @user.email%></p>
+                <p>
+                <strong>Gender: </strong>
+                <%= @user.gender %>
+                </p>
 
-<% if current_user.id == @user.id %>
-<%= button_to "Edit Profile", edit_user_path(@user), method: :get, class:'btn btn-sm btn-light' %>
-<% end %>
+                <p>
+                <strong>Contact number: </strong>
+                <%= @user.tel_no %>
+                </p>
+
+                <p>
+                <strong>Email address: </strong>
+                <%= @user.email %>
+                </p>
+
+
+                <% if current_user && current_user.id == @user.id %>    
+                    <%= button_to "Edit Profile", edit_user_path(@user), method: :get, class:'btn btn-sm btn-light' %>
+                <% end %>
+            </div>
+        
+            
+        </div>
+    </div>    
+</div>
+
+
