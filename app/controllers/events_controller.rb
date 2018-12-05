@@ -1,7 +1,10 @@
 class EventsController < ApplicationController
-
     def index
-        @events = Event.all.page(params[:page]).per(8).order('date ASC')
+        if params[:find]
+            @events = Event.search_by_name_state(params[:find]).page(params[:page]).per(8).order('date ASC')
+        else
+            @events = Event.all.page(params[:page]).per(8).order('date ASC')
+        end
     end
 
     def show

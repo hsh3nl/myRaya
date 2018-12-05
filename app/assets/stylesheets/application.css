@@ -14,13 +14,19 @@
  *= require_self
  */
 
- body {
+body {
     font-family: 'Oxygen', sans-serif;
  }
 
- .alert {
+.alert {
    position: fixed; 
    top: 4em;
    z-index: 9999; 
    border-radius: 0.5em;
+}
+
+.ui-autocomplete {
+   max-height: 200px; 
+   overflow-y: scroll; 
+   overflow-x: hidden;
 }
