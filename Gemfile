@@ -45,6 +45,9 @@ gem 'mini_magick'
 # Pagination with kaminari
 gem 'kaminari'
 
+# Search with pg_search
+gem 'pg_search'
+
 # END
 
 # Use ActiveStorage variant

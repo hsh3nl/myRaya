@@ -38,4 +38,13 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    # Checks if there is a user signed in otherwise redirect to sign in
+    def check_user_signin
+        if current_user.nil?
+            redirect_to sign_in_path
+            return false
+        else
+            return true
+        end
+    end
 end

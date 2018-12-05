@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+    before_action :check_user_signin
     
     def show
         @event = Event.find_by(id: params[:event_id])
