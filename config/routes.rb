@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   # User routes
-  resources :users, only: [:show, :create, :edit, :update]
+  resources :users, only: [:show, :create, :edit, :update] do 
+    # AJAX for promo code / user role setting
+    post '/promo_code' => 'users#promo'
+  end
 
   # Custom route: Dashboard for users
   get '/users/:id/dashboard' => "users#dashboard", as: 'dashboard'
@@ -19,6 +22,4 @@ Rails.application.routes.draw do
   delete "/sign_out" => "sessions#destroy", as: "sign_out"
   get "/sign_up" => "users#new", as: "sign_up"
 
-  # AJAX search route
-  post "/search" => "search#input"
 end

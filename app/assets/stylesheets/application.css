@@ -30,3 +30,13 @@ body {
    overflow-y: scroll; 
    overflow-x: hidden;
 }
+
+#pink-btn {
+   border-color: rgb(234, 95, 140);
+   color: rgb(234, 95, 140);
+}
+
+#pink-btn:hover {
+   background-color: rgb(234, 95, 140);
+   color: white;
+}
