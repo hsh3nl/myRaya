@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
     # Object method to check if there is someone signed in
     def signed_in?
         user_id = cookies[:user_id]
+        if user_id == ''
+            user_id = session[:user_id]
+        end
+
         user = User.find_by(id: user_id)
 
         if user
@@ -15,6 +19,10 @@ class ApplicationController < ActionController::Base
     # Returns current user if that user is signed in
     def current_user
         user_id = cookies[:user_id]
+        if user_id == ''
+            user_id = session[:user_id]
+        end
+
         user = User.find_by(id: user_id)
 
         if user
