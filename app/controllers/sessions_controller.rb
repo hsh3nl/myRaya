@@ -7,11 +7,12 @@ class SessionsController < ApplicationController
         password = signin_params[:password]
         remember_me = signin_params[:remember_me].to_i
         user = User.find_by(email: email).try(:authenticate, password)
+        reset_session
         if user && remember_me == 1
-            cookies[:user_id] = user.id
+            cookies[:user_id] = { value: user.id, expires: 7.day.from_now }
             redirect_to dashboard_path(user)
         elsif user && remember_me == 0
-            session[:user_id] = user.id
+            cookies[:user_id] = { value: user.id, expires: 7.day.from_now }
             redirect_to dashboard_path(user)
         else
             flash[:notice] = ["Email or password incorrect"]
@@ -20,8 +21,8 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        cookies[:user_id] = nil
-        session[:user_id] = nil
+        cookies.delete :user_id
+        reset_session
     
         redirect_to root_path
     end

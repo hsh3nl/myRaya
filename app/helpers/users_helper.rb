@@ -1,7 +1,7 @@
 module UsersHelper
     def signed_in?
         user_id = cookies[:user_id]
-        if user_id == ''
+        if user_id.nil?
             user_id = session[:user_id]
         end
 
@@ -17,7 +17,7 @@ module UsersHelper
     # Returns current user if that user is signed in
     def current_user
         user_id = cookies[:user_id]
-        if user_id == ''
+        if user_id.nil?
             user_id = session[:user_id]
         end
 

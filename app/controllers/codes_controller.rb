@@ -1,6 +1,6 @@
 class CodesController < ApplicationController
   def index
-    if current_user.master?
+    if current_user && current_user.master?
       @codes = Code.all
     else
       redirect_to root_path
