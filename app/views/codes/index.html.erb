@@ -1,0 +1,28 @@
+<div class='d-flex justify-content-center align-items-center mt-5'>
+    
+    <div class="jumbotron col-8 ">
+        <h1 class="display-4">All Unused Codes</h1>
+        <p class="lead">Manage issued codes here</p>
+        <hr class="my-4">   
+        
+        <% if @codes.count > 0 %>
+        <div class='row d-flex justify-content-center '>
+            <div class="card card-body col-lg-6 col-md-11 mb-4" >
+                <ul class="list-group">
+                    <% @codes.each do |c|%>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="badge badge-primary badge-pill"><%=c.role.titleize%></span>
+                            <%= c.key %>
+                            <%= button_to "Delete", code_delete_path(c), method: :delete, class:'btn btn-sm btn-outline-danger' %>                
+                        </li>
+                    <% end %>
+                </ul>    
+            </div>
+        </div>
+        <% else %>
+        No codes have been issued yet.
+        <% end %>
+    </div>    
+</div>
+
+

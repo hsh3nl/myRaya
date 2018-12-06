@@ -31,12 +31,18 @@ body {
    overflow-x: hidden;
 }
 
-#pink-btn {
+.pink-btn {
    border-color: rgb(234, 95, 140);
    color: rgb(234, 95, 140);
 }
 
-#pink-btn:hover {
+.pink-btn:hover {
    background-color: rgb(234, 95, 140);
+   border-color: rgb(234, 95, 140);
    color: white;
+}
+
+.pink-btn:active {
+   border-color: rgb(234, 95, 140);
+   color: rgb(234, 95, 140);
 }

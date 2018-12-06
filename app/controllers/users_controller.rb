@@ -57,28 +57,9 @@ class UsersController < ApplicationController
         end
     end
 
-    def promo
-        @user = User.find_by(id: params[:user_id])
-        check_user_profile(@user)
-
-        code = promo_params[:code]
-        if code == 'aa8b762531d96db45dacdb6e452405e8'
-            @user.master!
-            flash[:success] = ['Go have a coffee :))']
-            redirect_to user_path(@user)
-        else 
-            flash[:notice] = ['The promo code cannot be found or has expired']
-            redirect_to user_path(@user)        
-        end
-    end 
-
     private
 
     def user_params
         params.require(:user).permit(:first_name, :last_name, :gender, :email, :tel_no, :password, :password_confirmation, :image, :remove_image)
-    end
-
-    def promo_params
-        params.require(:promo_code).permit(:code)
     end
 end
