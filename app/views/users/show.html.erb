@@ -7,7 +7,7 @@
         
         <div class='row d-flex justify-content-center '>
         
-            <div class="card card-body col-lg-6 col-md-12 col-sm-12 mr-2 ml-2" >
+            <div class="card card-body col-lg-6 col-md-11 mb-4" >
                 <h2><%= @user.first_name %> <%= @user.last_name %></h2>
                 <div id='profile-img'>
                     <% if @user.image? %>
@@ -35,12 +35,53 @@
 
 
                 <% if current_user && current_user.id == @user.id %>    
-                    <%= button_to "Edit Profile", edit_user_path(@user), method: :get, class:'btn btn-sm btn-light' %>
+                    <%= button_to "Edit Profile", edit_user_path(@user), method: :get, class:'btn btn-sm btn-light pink-btn' %>
                 <% end %>
             </div>
         
             
         </div>
+        <% if current_user && current_user.id == @user.id%>
+        <div class='row d-flex justify-content-center '>
+        
+            <div class="card card-body col-lg-6 col-md-11 mb-4" >
+                <h2>Promo Code</h2>
+
+                <%= form_with scope: :promo_code, remote: true, url: user_promo_code_path(@user)  do |form| %>
+                <p>
+                    <%= form.label :Enter_code %><br>
+                    <%= form.text_field :code, autocomplete: 'off' %>
+                </p>
+                
+                <p>
+                    <%= form.submit 'Submit', class:' btn btn-sm pink-btn'%>
+                </p>
+                <% end %>
+            </div>            
+        </div>
+        <% end %>
+
+        <% if current_user && current_user.id == @user.id && current_user.master? %>
+        <div class='row d-flex justify-content-center '>
+        
+            <div class="card card-body col-lg-6 col-md-11" >
+                <h2>Generate User Role Code</h2>
+                <small>Make a code to assign user roles</small>
+                <p>
+                    <%= select_tag 'roles', options_for_select(['Customer', 'Moderator', 'Master' ]), id:'role-selected' %>
+                    <button class="btn btn-sm pink-btn" id='generate-code-btn'>Generate</button>
+                </p>
+                <a class="btn btn-sm pink-btn" href="/codes">Manage Issued Codes</a><br/>
+                <strong>GENERATED CODES:</strong><br>
+                <ul class="list-group" id='code-result'>
+                        
+                </ul> 
+                
+                
+            </div>            
+        </div>
+        <% end %>
+
     </div>    
 </div>
 
