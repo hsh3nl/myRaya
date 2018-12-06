@@ -48,6 +48,9 @@ gem 'kaminari'
 # Search with pg_search
 gem 'pg_search'
 
+# Payment with braintree
+gem 'braintree'
+
 # END
 
 # Use ActiveStorage variant
