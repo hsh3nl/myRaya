@@ -36,12 +36,12 @@ ActiveRecord::Base.transaction do
     event['postal_code'] = rand(10000..70000)
     event['state'] = ['Perlis', 'Kedah', 'Kuala Lumpur', 'Perak', 'Kelantan', 'Terengganu', 'Penang', 'Melacca', 'Negeri Sembilan', 'Selangor', 'Johor', 'Pahang', 'Sarawak', 'Sabah'].sample
     event['date'] = Faker::Date.between_except(Date.today, 1.year.from_now, Date.today)
-    event['start_hr'] = (0..23).to_a.sample
-    event['start_min'] = (0..59).to_a.sample
-    event['end_hr'] = (0..23).to_a.sample
-    event['end_min'] = (0..59).to_a.sample
-    event['max_pax'] = rand(1..5)
-    event['price_per_pax'] = rand(30..300)
+    event['start_hr'] = ('00'..'23').to_a.sample
+    event['start_min'] = ('00'..'59').to_a.sample
+    event['end_hr'] = ('00'..'23').to_a.sample
+    event['end_min'] = ('00'..'59').to_a.sample
+    event['max_pax'] = rand(1..20)
+    event['price_per_pax'] = rand(10..300)
     event['attachments'] = [[Rails.root.join("app/assets/images/seeds/cny1.jpg").open,Rails.root.join("app/assets/images/seeds/cny2.png").open],[Rails.root.join("app/assets/images/seeds/dee1.jpg").open,Rails.root.join("app/assets/images/seeds/dee2.jpeg").open],[Rails.root.join("app/assets/images/seeds/raya1.png").open,Rails.root.join("app/assets/images/seeds/raya2.png").open]].sample
 
     event['user_id'] = uids.sample
