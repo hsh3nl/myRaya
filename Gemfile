@@ -51,6 +51,9 @@ gem 'pg_search'
 # Payment with braintree
 gem 'braintree'
 
+# HTTP requests with http gem
+gem 'http'
+
 # END
 
 # Use ActiveStorage variant

@@ -24,4 +24,29 @@ class Event < ApplicationRecord
     end
   end
 
+  # Custom method to return whether the event is within given argument as days
+  def within_days(days)
+    days_from_now = Time.now + 60*60*24*days
+    event_date = Time.parse(date.to_s + ' ' + start_hr + ":" + start_min)
+    if event_date < days_from_now
+      return true
+    else
+      return false
+    end
+  end
+
+  # Custom method to return the multiple of hours in blocks of (argument) from today
+  # ie: event is in 3 days 1 hour, means 73hours. given hour_multiple of 3
+  # the result is then 24
+  def nearest_hr_count_with_multiple(hour_multiple)
+    # Determine the event date
+    event_date = Time.parse(date.to_s + ' ' + start_hr + ":" + start_min)
+
+    # find the multiple of the event from today, usually results in a float
+    multiple = (event_date - Time.now)/60/60/hour_multiple
+
+    # round down to the nearest multiple
+    # the reason for this is so that the weather is taken before event
+    lower_multiple = multiple.floor
+  end
 end

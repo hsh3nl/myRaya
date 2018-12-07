@@ -26,17 +26,48 @@ $( document ).ready(function() {
         data: "type=" + user_role,
         dataType: "JSON",
         success: function(response){
-          if (response != 'error'){
-            var listdiv = $('<li class="list-group-item d-flex justify-content-between align-items-center"></li>');
-            var spandiv = $('<span class="badge badge-primary badge-pill">' + $('#role-selected').val() + '</span><div>' + response + '</div>');
-            listdiv.html(spandiv);
-            $('#code-result').append(listdiv);
-            $('#code-title').show();
-          }
+          var listdiv = $('<li class="list-group-item d-flex justify-content-between align-items-center"></li>');
+          var spandiv = $('<span class="badge badge-primary badge-pill">' + $('#role-selected').val() + '</span><div>' + response + '</div>');
+          listdiv.html(spandiv);
+          $('#code-result').append(listdiv);
+          $('#code-title').show();
         }
       })
     });
+    
+    $('.weather-btn').click(function(){
+      var btn_id = $(this).attr('id')
+      var this_btn = $('#' + btn_id)
+      console.log(btn_id)
 
+
+      
+      Rails.ajax({
+        type: "POST", 
+        url: "/weather",
+        data: "event=" + btn_id,
+        dataType: "JSON",
+        success: function(weather){
+          if (weather.error == 0) {
+          this_btn.popover({
+            trigger: 'focus',
+            title: weather.icon_tag + weather.title,
+            content: 'Expect ' + weather.status,
+            html: true
+          });
+          } else {
+            this_btn.popover({
+              trigger: 'focus',
+              title: weather.title,
+              content: weather.status
+            });
+          }
+        this_btn.popover("show");
+        $('.popover-body').addClass('text-center')
+        }
+      })
+        
+    });
 });
 
 
