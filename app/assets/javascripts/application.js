@@ -38,9 +38,6 @@ $( document ).ready(function() {
     $('.weather-btn').click(function(){
       var btn_id = $(this).attr('id')
       var this_btn = $('#' + btn_id)
-      console.log(btn_id)
-
-
       
       Rails.ajax({
         type: "POST", 
