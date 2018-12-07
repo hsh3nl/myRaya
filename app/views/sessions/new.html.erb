@@ -5,10 +5,11 @@
       </div>
       
       <div class="w-100 "></div>
+        <h3>myRaya</h3>
+        <div class="w-100"></div>
+        <div class="text-muted"><small>Sign In</small></div>
+        <hr class=" col-11">
       
-      myRaya Members 
-      
-      <div class="w-100 mb-2 "></div>
       
       <div class="input-group mb-3 d-flex justify-content-center">
         <div class="input-group-prepend">
@@ -27,10 +28,11 @@
         <%= form.password_field :password, class:"form-control-sm", placeholder:"Password" %>
       </div>
 
-      <div class="input-group mb-3 pl-4 d-flex justify-content-left align-items-center">
-        <%= form.check_box :remember_me %> <small class='ml-2 mt-1'>Remember me</small>
+      <div class="input-group mb-3 pl-4 d-flex justify-content-left align-items-center custom-control custom-checkbox col-9">
+        <%= form.check_box :remember_me, class:'custom-control-input', id:'rmb-me' %> 
+        <label class="custom-control-label pl-1" for="rmb-me"><small>Remember me</small></label>
       </div>
-        <%= form.submit 'Sign In', class:' btn btn-sm col-11 pink-btn'%>
+        <%= form.submit 'Sign In', class:' btn btn-sm col-11 pink-btn mb-2'%>
         <% end %>
   </div>
 </div>

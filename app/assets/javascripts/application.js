@@ -16,23 +16,27 @@
 //= require_tree .
 
 $( document ).ready(function() {
-    $('#generate-code-btn').click(function(){
-    user_role = $('#role-selected').val()
+    $('#generate-code-btn').click(function(event){
+      event.preventDefault();
+      user_role = $('#role-selected').val();
 
-    Rails.ajax({
-      type: "POST", 
-      url: "/generate_code",
-      data: "type=" + user_role,
-      dataType: "JSON",
-      success: function(response){
-          var listdiv = $('<li class="list-group-item d-flex justify-content-between align-items-center"></li>')
-          var spandiv = $('<span class="badge badge-primary badge-pill">' + $('#role-selected').val() + '</span><div>' + response + '</div>')
-          listdiv.html(spandiv)
-          $('#code-result').append(listdiv);
-        console.log(response)
-      }
-    })
+      Rails.ajax({
+        type: "POST", 
+        url: "/generate_code",
+        data: "type=" + user_role,
+        dataType: "JSON",
+        success: function(response){
+          if (response != 'error'){
+            var listdiv = $('<li class="list-group-item d-flex justify-content-between align-items-center"></li>');
+            var spandiv = $('<span class="badge badge-primary badge-pill">' + $('#role-selected').val() + '</span><div>' + response + '</div>');
+            listdiv.html(spandiv);
+            $('#code-result').append(listdiv);
+            $('#code-title').show();
+          }
+        }
+      })
     });
+
 });
 
 

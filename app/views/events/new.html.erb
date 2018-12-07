@@ -1,19 +1,125 @@
 <div class='d-flex justify-content-center align-items-center mt-5'>
-    
     <div class="jumbotron col-11 ">
         <h1 class="display-4">Add Event!</h1>
         <p class="lead">Share the joy of your culture!</p>
         <hr class="my-4">   
-        
-        <div class='row d-flex justify-content-around '>
-            <div class="card card-body col-8 d-flex" >
-                <div class="card-group">
-                        <h4 class="display-5 col-11 m-auto">Fill in Event Details</h4>
-                        <hr class="my-4 col-11">                       
-                        <%= render "form" %>    
+        <div class="container d-flex justify-content-center align-items-center bg-light rounded" id='signup-container'>
+            <div class="row col d-flex justify-content-center align-items-center pt-4 pb-3">
+                <div class="col pb-1 d-flex justify-content-center">
+                    <img src=<%=image_url('logo.png')%> width="100" height="100" class="d-inline-block align-top" alt="">
                 </div>
+            
+                <div class="w-100 "></div>
+                <h3>myRaya </h3>
+                <div class="w-100 "></div>
+                <p class="text-muted">New Event Form</p>
+
+                <hr class="col-11">
+                <div class="w-100 mb-2"></div>
+                - Main Details -
+                <div class="w-100 mb-3"></div>
+            
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Event Name</small></span>
+                    </div>
+                    <%= form_with model:@event, local: true  do |form| %>
+                    <%= form.text_field :name, class:"form-control-sm", :size=>"50" %>
+                </div>
+                
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Description</small></span>
+                    </div>
+                    <%= form.text_field :description, class:"form-control-sm", :size=>"50" %>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Photos</small></span>
+                    </div>
+                    <%= form.file_field :attachments, multiple: true, class:"form-control-sm", :size=>"50" %>
+                </div>
+
+                <hr class="col-11">
+                    <div class="w-100 mb-2"></div>
+                    - Event Location -
+                    <div class="w-100 mb-3"></div>
+                
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Address</small></span>
+                    </div>
+                    <%= form.text_field :address, class:"form-control-sm", :size=>"50" %>
+                </div>
+                
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Postal Code</small></span>
+                    </div>
+                    <%= form.text_field :postal_code, class:"form-control-sm", :size=>"50" %>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>State</small></span>
+                    </div>
+                    <%= form.select :state, ['Kuala Lumpur', 'Labuan', 'Johor', 'Kedah', 'Kelantan', 'Melacca', 'Negeri Sembilan', 'Pahang', 'Penang', 'Perak', 'Perlis', 'Sabah', 'Sabah', 'Sarawak', 'Selangor', 'Terrenganu'], :include_blank => "Choose state" %>
+                </div>
+
+                <hr class="col-11">
+                    <div class="w-100 mb-2"></div>
+                    - Event Schedule -
+                    <div class="w-100 mb-3"></div>
+                
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Date</small></span>
+                    </div>
+                    <%= form.date_field :date, class:"form-control-sm", :size=>"50" %>
+                </div>
+                
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Event Starts</small></span>
+                    </div>
+                    <%= form.select :start_hr, ('00'..'23').to_a, :include_blank => "Hour" %>
+                    <%= form.select :start_min, ('00'..'59').to_a, :include_blank => "Min" %>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Event Ends</small></span>
+                    </div>
+                    <%= form.select :end_hr, ('00'..'23').to_a, :include_blank => "Hour" %>
+                    <%= form.select :end_min, ('00'..'59').to_a, :include_blank => "Min" %>
+                </div>
+
+                <hr class="col-11">
+                    <div class="w-100 mb-2"></div>
+                    - Capacity & Pricing -
+                    <div class="w-100 mb-3"></div>
+                
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Max Participants</small></span>
+                    </div>
+                    <%= form.number_field :max_pax, class:"form-control-sm", :size=>"50" %>
+                </div>
+                
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Price per Pax</small></span>
+                    </div>
+                    <%= form.number_field :price_per_pax, class:"form-control-sm", :size=>"50" %>
+                </div>
+
+                <hr class="col-11">
+                <%= form.submit 'Register Event', class:' btn btn-sm pink-btn mb-2'%>
+                <% end %>
             </div>
         </div>
+        <div class="w-100 mb-5"></div>
     </div>    
 </div>
 

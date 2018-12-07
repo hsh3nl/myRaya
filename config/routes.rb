@@ -27,4 +27,7 @@ Rails.application.routes.draw do
   post '/generate_code' => "codes#generate_code"
   get '/codes' => 'codes#index'
   delete '/codes/:id' => 'codes#destroy', as: 'code_delete'
+
+  # Braintree path
+  post 'braintree/checkout'
 end

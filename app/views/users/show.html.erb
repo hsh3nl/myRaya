@@ -46,42 +46,47 @@
         
             <div class="card card-body col-lg-6 col-md-11 mb-4" >
                 <h2>Promo Code</h2>
+                <p class="text-muted"><small>Redeem a promo code</small></p>
 
-                <%= form_with scope: :promo_code, remote: true, url: user_promo_code_path(@user)  do |form| %>
-                <p>
-                    <%= form.label :Enter_code %><br>
-                    <%= form.text_field :code, autocomplete: 'off' %>
-                </p>
-                
-                <p>
-                    <%= form.submit 'Submit', class:' btn btn-sm pink-btn'%>
-                </p>
+                <%= form_with scope: :promo_code, remote: true, url: user_promo_code_path(@user), class:'card p-2'  do |form| %>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text form-control" id="basic-addon1"><small>Enter Code:</small></span>
+                        </div>
+                        <%= form.text_field :code, class:"form-control", :size=>"40", autocomplete: 'off' %>
+                        <div class="input-group-append">
+                            <%= form.submit 'Submit', class:' btn btn-sm pink-btn'%>
+                        </div>
+                    </div>
                 <% end %>
+
+                
             </div>            
         </div>
         <% end %>
 
         <% if current_user && current_user.id == @user.id && current_user.master? %>
-        <div class='row d-flex justify-content-center '>
-        
-            <div class="card card-body col-lg-6 col-md-11" >
-                <h2>Generate User Role Code</h2>
-                <small>Make a code to assign user roles</small>
-                <p>
-                    <%= select_tag 'roles', options_for_select(['Customer', 'Moderator', 'Master' ]), id:'role-selected' %>
-                    <button class="btn btn-sm pink-btn" id='generate-code-btn'>Generate</button>
-                </p>
-                <a class="btn btn-sm pink-btn" href="/codes">Manage Issued Codes</a><br/>
-                <strong>GENERATED CODES:</strong><br>
-                <ul class="list-group" id='code-result'>
-                        
-                </ul> 
-                
-                
-            </div>            
-        </div>
-        <% end %>
+            <div class='row d-flex justify-content-center '>
+            
+                <div class="card card-body col-lg-6 col-md-11" >
+                    <h2>Generate User Role Code</h2>
+                    <p class="text-muted"><small>Issue a code to assign user roles</small></p>
 
+                    <form class="card p-2 mb-3">
+                        <div class="input-group">
+                            <%= select_tag 'roles', options_for_select(['Customer', 'Moderator', 'Master' ]), id:'role-selected', class:'form-control'%>
+                            <div class="input-group-append">
+                                <button class="btn btn-sm pink-btn " id='generate-code-btn'>Generate</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <a class="btn btn-sm pink-btn" href="/codes">Manage Issued Codes</a><br/>
+                    <strong style="display: none" id='code-title'>GENERATED CODES:</strong><br>
+                    <ul class="list-group" id='code-result'></ul> 
+                </div>            
+            </div>
+        <% end %>
     </div>    
 </div>
 

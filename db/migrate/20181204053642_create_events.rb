@@ -7,8 +7,8 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.string :postal_code
       t.string :state
       t.date :date
-      t.integer :start_hr
-      t.integer :start_min
+      t.string :start_hr
+      t.string :start_min
       t.integer :end_hr
       t.integer :end_min
       t.integer :max_pax

@@ -17,22 +17,22 @@ class CodesController < ApplicationController
   def generate_code
       role_selected = code_params[:type]
       if role_selected == 'Master'
-          @new_code =  SecureRandom.hex
-          code = Code.create(key:@new_code, role: 0)
+        @new_code =  SecureRandom.hex
+        code = Code.create(key:@new_code, role: 0)
       elsif role_selected == 'Moderator'
-          @new_code =  SecureRandom.hex
-          code = Code.create(key:@new_code, role: 1)
+        @new_code =  SecureRandom.hex
+        code = Code.create(key:@new_code, role: 1)
       elsif role_selected == 'Customer'
-          @new_code =  SecureRandom.hex
-          code = Code.create(key:@new_code, role: 2)
+        @new_code =  SecureRandom.hex
+        code = Code.create(key:@new_code, role: 2)
       end
 
       if @new_code
-          respond_to do |f|
-              f.json {render :json => @new_code}
-          end
+        respond_to do |f|
+            f.json {render :json => @new_code}
+        end
       else
-          redirect_to root_path
+        redirect_to root_path
       end
   end
 
@@ -41,7 +41,6 @@ class CodesController < ApplicationController
     check_user_profile(@user)
     received_code = promo_params[:code]
     code = Code.find_by(key: received_code)
-    byebug
     if code 
       if code.moderator?
         @user.moderator!

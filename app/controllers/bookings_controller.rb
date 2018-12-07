@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
     def new
         @event = Event.find_by(id: params[:event_id])
         @booking = Booking.new
+        @client_token = Braintree::ClientToken.generate
     end
 
     def create
