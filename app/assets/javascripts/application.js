@@ -50,13 +50,15 @@ $( document ).ready(function() {
             trigger: 'focus',
             title: weather.icon_tag + weather.title,
             content: 'Expect ' + weather.status,
-            html: true
+            html: true,
+            placement: 'bottom'
           });
           } else {
             this_btn.popover({
               trigger: 'focus',
               title: weather.title,
-              content: weather.status
+              content: weather.status,
+              placement: 'bottom'
             });
           }
         this_btn.popover("show");
