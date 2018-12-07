@@ -3,12 +3,14 @@
     <div class="jumbotron col-8 ">
         <h1 class="display-4">All Unused Codes</h1>
         <p class="lead">Manage issued codes here</p>
+        <a class="btn btn-sm pink-btn" href="/users/<%=current_user.id%>">Return to Profile Page</a><br/>
         <hr class="my-4">   
         
         <% if @codes.count > 0 %>
         <div class='row d-flex justify-content-center '>
             <div class="card card-body col-lg-6 col-md-11 mb-4" >
                 <ul class="list-group">
+                    <h3>Generated Codes</h3>
                     <% @codes.each do |c|%>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span class="badge badge-primary badge-pill"><%=c.role.titleize%></span>

@@ -46,17 +46,21 @@
         
             <div class="card card-body col-lg-6 col-md-11 mb-4" >
                 <h2>Promo Code</h2>
+                <p class="text-muted"><small>Redeem a promo code</small></p>
 
-                <%= form_with scope: :promo_code, remote: true, url: user_promo_code_path(@user)  do |form| %>
-                <p>
-                    <%= form.label :Enter_code %><br>
-                    <%= form.text_field :code, autocomplete: 'off' %>
-                </p>
-                
-                <p>
-                    <%= form.submit 'Submit', class:' btn btn-sm pink-btn'%>
-                </p>
+                <%= form_with scope: :promo_code, remote: true, url: user_promo_code_path(@user), class:'card p-2'  do |form| %>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text form-control" id="basic-addon1"><small>Enter Code:</small></span>
+                        </div>
+                        <%= form.text_field :code, class:"form-control", :size=>"40", autocomplete: 'off' %>
+                        <div class="input-group-append">
+                            <%= form.submit 'Submit', class:' btn btn-sm pink-btn'%>
+                        </div>
+                    </div>
                 <% end %>
+
+                
             </div>            
         </div>
         <% end %>
@@ -66,9 +70,9 @@
             
                 <div class="card card-body col-lg-6 col-md-11" >
                     <h2>Generate User Role Code</h2>
-                    <small>Issue a code to assign user roles</small>
+                    <p class="text-muted"><small>Issue a code to assign user roles</small></p>
 
-                    <form class="card p-2 mt-3 mb-3">
+                    <form class="card p-2 mb-3">
                         <div class="input-group">
                             <%= select_tag 'roles', options_for_select(['Customer', 'Moderator', 'Master' ]), id:'role-selected', class:'form-control' %>
                             <div class="input-group-append">
