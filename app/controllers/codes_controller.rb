@@ -41,7 +41,6 @@ class CodesController < ApplicationController
     check_user_profile(@user)
     received_code = promo_params[:code]
     code = Code.find_by(key: received_code)
-    byebug
     if code 
       if code.moderator?
         @user.moderator!

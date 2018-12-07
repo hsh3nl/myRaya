@@ -111,7 +111,11 @@
 $('#search-input').css('font-family', "'Oxygen', sans-serif");
 
 $( document ).ready(function() {
-var domain_name = window.location.protocol + "//" + window.location.host + "/";
+  $(".alert").fadeTo(5000, 300).slideUp(300, function(){
+    $(".alert").alert(300);
+  });   
+
+  var domain_name = window.location.protocol + "//" + window.location.host + "/";
 
   // Initialises all the autocomplete entries
   $( function() {
