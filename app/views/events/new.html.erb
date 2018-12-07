@@ -5,12 +5,166 @@
         <p class="lead">Share the joy of your culture!</p>
         <hr class="my-4">   
         
+        
+        <div class="container d-flex justify-content-center align-items-center bg-light rounded" id='signup-container'>
+  <div class="row col d-flex justify-content-center align-items-center pt-4 pb-3">
+      <div class="col pb-1 d-flex justify-content-center">
+          <img src=<%=image_url('logo.png')%> width="100" height="100" class="d-inline-block align-top" alt="">
+      </div>
+    
+      <div class="w-100 "></div>
+        <h3>myRaya </h3>
+        <div class="w-100 "></div>
+        <p class="text-muted">New User Registration</p>
+      <div class="w-100 mb-3"></div>
+      
+      Personal Details 
+      
+      <div class="w-100 mb-3"></div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>First Name</small></span>
+        </div>
+        <%= form_with model:@user, local: true  do |form| %>
+        <%= form.text_field :first_name, class:"form-control-sm", :size=>"50" %>
+      </div>
+    
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Last Name</small></span>
+        </div>
+        <%= form.text_field :last_name, class:"form-control-sm", :size=>"50" %>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Contact Number</small></span>
+        </div>
+        <%= form.text_field :tel_no, class:"form-control-sm", :size=>"50" %>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Gender</small></span>
+        </div>
+        <%= form.select :gender, ['Male','Female','Prefer not to say'] %>
+      </div>
+    
+      <div class="input-group mb-3 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Profile Picture</small></span>
+        </div>
+        <%= form.file_field :image, class:"form-control-sm"  %>
+      </div>
+    
+      <div class="w-100 mb-3"></div>
+
+        Login Details
+      <div class="w-100 mb-3"></div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Email Address</small></span>
+        </div>
+        <%= form.text_field :email, class:"form-control-sm", :size=>"50" %>
+      </div>
+    <hr class="col-11">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Password</small></span>
+        </div>
+        <%= form.password_field :password, class:"form-control-sm", :size=>"50" %>
+      </div>
+
+      <div class="input-group mb-3 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Retype Password</small></span>
+        </div>
+        <%= form.password_field :password_confirmation, class:"form-control-sm", :size=>"50" %>
+      </div>
+
+        <%= form.submit 'Complete Registration', class:' btn btn-sm pink-btn mb-2'%>
+        <% end %>
+  </div>
+</div>
+
+<div class="w-100 mb-5"></div>
+
+
+
+        
+        
         <div class='row d-flex justify-content-around '>
             <div class="card card-body col-8 d-flex" >
                 <div class="card-group">
                         <h4 class="display-5 col-11 m-auto">Fill in Event Details</h4>
                         <hr class="my-4 col-11">                       
-                        <%= render "form" %>    
+                        
+
+
+
+                        <%= form_with model:@event, local: true  do |form| %>
+  <p>
+    <%= form.label :event_name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_field :description %>
+  </p>  
+
+  <p>
+    <%= form.label :address %><br>
+    <%= form.text_field :address %>
+  </p>
+
+  <p>
+    <%= form.label :postal_code %><br>
+    <%= form.text_field :postal_code %>
+  </p>    
+
+  <p>
+    <%= form.label :state %><br>
+    <%= form.text_field :state %>
+  </p>  
+
+  <p>
+    <%= form.label :date %><br>
+    <%= form.date_field :date %>
+  </p>
+  
+  <p>
+    <%= form.label :Start_time %><br>
+    <%= form.number_field :start_hr %>
+    <%= form.number_field :start_min %>
+  </p>
+
+  <p>
+    <%= form.label :End_time %><br>
+    <%= form.number_field :end_hr %>
+    <%= form.number_field :end_min %>
+  </p>
+
+  <p>
+    <%= form.label :max_participants %><br>
+    <%= form.number_field :max_pax %>
+  </p> 
+
+  <p>
+    <%= form.label :price_per_pax %><br>
+    <%= form.number_field :price_per_pax %>
+  </p>    
+
+  <p>
+    <%= form.label :attachments %>
+    <%= form.file_field :attachments, multiple: true %>
+  </p>
+ 
+  <p>
+    <%= form.submit 'Submit', class:' btn btn-sm btn-outline-success'%>
+  </p>
+<% end %>    
                 </div>
             </div>
         </div>

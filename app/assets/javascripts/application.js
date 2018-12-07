@@ -26,11 +26,13 @@ $( document ).ready(function() {
         data: "type=" + user_role,
         dataType: "JSON",
         success: function(response){
-          var listdiv = $('<li class="list-group-item d-flex justify-content-between align-items-center"></li>');
-          var spandiv = $('<span class="badge badge-primary badge-pill">' + $('#role-selected').val() + '</span><div>' + response + '</div>');
-          listdiv.html(spandiv);
-          $('#code-result').append(listdiv);
-          $('#code-title').show();
+          if (response != 'error'){
+            var listdiv = $('<li class="list-group-item d-flex justify-content-between align-items-center"></li>');
+            var spandiv = $('<span class="badge badge-primary badge-pill">' + $('#role-selected').val() + '</span><div>' + response + '</div>');
+            listdiv.html(spandiv);
+            $('#code-result').append(listdiv);
+            $('#code-title').show();
+          }
         }
       })
     });
