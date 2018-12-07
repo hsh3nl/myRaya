@@ -160,7 +160,6 @@ $( document ).ready(function() {
   // Code to run when enter key is run, and has an id enterKey
   $('#search-input').bind("enterKey",function(e){
     const input_val = $('#search-input').val();
-    console.log(input_val);
     window.location.assign(domain_name + 'events?find=' + input_val)
   });
   

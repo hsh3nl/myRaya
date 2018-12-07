@@ -1,5 +1,5 @@
-<div class="container d-flex justify-content-center align-items-center bg-light rounded col-5" id='login-container'>
-  <div class="row col d-flex justify-content-center align-items-center pt-4 pb-3">
+<div class="container d-flex justify-content-center align-items-center mb-5" >
+  <div class="row col d-flex justify-content-center align-items-center pt-4 pb-3 bg-light rounded" id='login-container'>
       <div class="col pb-1 d-flex justify-content-center">
           <img src=<%=image_url('logo.png')%> width="100" height="100" class="d-inline-block align-top" alt="">
       </div>
@@ -8,7 +8,7 @@
         <h3>myRaya</h3>
         <div class="w-100"></div>
         <div class="text-muted"><small>Sign In</small></div>
-        <hr class=" col-11">
+        <hr class=" col-10">
       
       
       <div class="input-group mb-3 d-flex justify-content-center">
@@ -32,7 +32,7 @@
         <%= form.check_box :remember_me, class:'custom-control-input', id:'rmb-me' %> 
         <label class="custom-control-label pl-1" for="rmb-me"><small>Remember me</small></label>
       </div>
-        <%= form.submit 'Sign In', class:' btn btn-sm col-11 pink-btn mb-2'%>
+        <%= form.submit 'Sign In', class:' btn btn-sm col-9 pink-btn mb-2'%>
         <% end %>
   </div>
 </div>

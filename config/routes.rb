@@ -29,5 +29,8 @@ Rails.application.routes.draw do
   delete '/codes/:id' => 'codes#destroy', as: 'code_delete'
 
   # Braintree path
-  post 'braintree/checkout'
+  post '/braintree/checkout'
+
+  # Weather path
+  post '/weather' => 'weather#identify'
 end
