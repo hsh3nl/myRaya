@@ -4,6 +4,7 @@
     <title>myRaya</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= favicon_link_tag %>
 
     <%# Boostrap CSS %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -24,8 +25,8 @@
   </head>
 
   <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a class="navbar-brand " href=<%=root_path%>>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" id='navi-bar'>
+        <a class="navbar-brand btn btn-light" href=<%=root_path%>>
           <img src=<%=image_url('logo.png')%> width="30" height="30" class="d-inline-block align-top" alt="">
           myRaya
         </a>
@@ -40,9 +41,12 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
+            <li class='nav-item'>
+              <a class="nav-link btn btn-sm btn-light" href=<%=events_path%>>Latest Events</a>
+            </li>
             <% if signed_in? %> 
               <li class="nav-item">
-                <a class="nav-link btn btn-sm btn-light" href=<%=new_event_path%>>Make Event!</a>
+                <a class="nav-link btn btn-sm btn-light" href=<%=new_event_path%>>Add Event!</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link btn btn-sm btn-light" href="/users/<%=current_user.id%>/dashboard">Dashboard</a>
@@ -101,15 +105,12 @@
   </body>
 
   <footer class="blog-footer">
-      <p><small>A mission to unite Malaysians through </small><br>
+      <small>A mission to unite Malaysians through </small><br>
         <img src=<%=image_url('logo.png')%> width="25" height="25" class="d-inline-block align-top" alt="">
-        myRaya <small>
+        myRaya<small>
         <br>
-        <small>Brought to you by <a href="https://hunshenl.github.io/" target="_blank">hunshenlnc</a>.</small>
-      </p>
-      <p>
+        <small>Brought to you by<a href="https://hunshenl.github.io/" target="_blank"> hunshenInc</a>.</small><br>
         <a href="#">Back to top</a>
-      </p>
     </footer>
 </html>
 

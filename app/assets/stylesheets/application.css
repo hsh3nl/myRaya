@@ -51,14 +51,28 @@ body {
 }
 
 .blog-footer {
-   padding: 2.5rem 0;
+   padding: 1em;
    color: #999;
    text-align: center;
    background-color: #f9f9f9;
    border-top: .05rem solid #e5e5e5;
  }
+ 
  .blog-footer p:last-child {
    margin-bottom: 0;
  }
+
+#navi-bar {
+   box-shadow: 0 0 0.3em 0.01em rgba(70,70,70,0.5);
+
+   background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6-15 */
+   background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10-25,Safari5.1-6 */
+   background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.nav-link, .navbar-brand {
+   background: rgba(221, 221, 221,0);
+   border-style: none;
+}
  
 

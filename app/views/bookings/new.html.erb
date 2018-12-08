@@ -1,6 +1,4 @@
-<h3>Learning another culture is the same as contributing world peace!</h3>
 
-<%= render "form" %>
 
 
   <%= form_for :checkout_form, url:braintree_checkout_path,  html: { id: "cardForm"} do |form| %>
@@ -21,16 +19,16 @@
     </div>
   <% end %>
 
-<hr class='col-10'>
 
 
 
 <div class="container">
-      <div class="py-5 text-center">
+      <div class="pt-5 text-center">
         <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h2>Confirm Your Booking</h2>
         <p class="lead">Please state the number of places you would like to book for this event</p>
       </div>
+<hr class='my-5'>
 
       <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
@@ -89,7 +87,7 @@
               <label for="email">Number of Participants <span class="text-muted">(Including Representative)</span></label>
               <input type="email" class="form-control" id="email" placeholder="you@example.com">
               <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
+                Please enter a number of participants
               </div>
             </div>
             <div class="mb-5">
@@ -237,15 +235,6 @@
           </form>
         </div>
       </div>
-
-      <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">© 2017-2018 Company Name</p>
-        <ul class="list-inline">
-          <li class="list-inline-item"><a href="#">Privacy</a></li>
-          <li class="list-inline-item"><a href="#">Terms</a></li>
-          <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
-      </footer>
     </div>
 
 
