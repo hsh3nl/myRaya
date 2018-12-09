@@ -85,17 +85,17 @@
           <form class="needs-validation" novalidate="">
             <div class="mb-3">
               <label for="email">Number of Participants <span class="text-muted">(Including Representative)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <%= form_with model:@booking, local: true, url: event_bookings_path(@event)  do |form| %>
+              <%= form.number_field :no_of_pax, class:'form-control' %>
               <div class="invalid-feedback">
-                Please enter a number of participants
+                Please enter at least 1 participant.
               </div>
             </div>
             <div class="mb-5">
               <label for="email">Special Request(s) <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="Example: I'm vegetarian">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
+              <%= form.text_field :spec_req, class:'form-control', placeholder:'Example: I\'m vegetarian' %>
+              <%= form.hidden_field :event_id, :value => @event.id %>
+              <% end %> 
             </div>
             <hr class="mb-4">
             <h4 class="mb-3">Billing Details</h4>
@@ -236,6 +236,24 @@
         </div>
       </div>
     </div>
+
+<%= form_with model:@booking, local: true, url: event_bookings_path(@event)  do |form| %>
+  
+  <p>
+    <%= form.label :Number_of_participants %><br>
+    <%= form.number_field :no_of_pax %>
+  </p>
+   <p>
+    <%= form.label :Special_requests %><br>
+    <%= form.text_field :spec_req %>
+    <%= form.hidden_field :event_id, :value => @event.id %>
+  </p>    
+ 
+  <p>
+    <%= form.submit 'Submit', class:' btn btn-sm btn-outline-success'%>
+  </p>
+<% end %> 
+
 
 
 <%# BRAINTREE REQUIRED %>
