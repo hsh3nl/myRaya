@@ -14,9 +14,9 @@ Rails.application.routes.draw do
 
   # Events routes nested with booking routes
   resources :events do 
-    resources :bookings, only: [:show, :new, :edit, :create]
+    resources :bookings, only: [:show, :new, :create]
   end
-
+  
   #Session routes
   get "/sign_in" => "sessions#new", as: "sign_in"
   post "/sign_in" => "sessions#create"
