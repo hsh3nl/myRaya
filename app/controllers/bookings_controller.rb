@@ -54,7 +54,7 @@ class BookingsController < ApplicationController
         
             if result.success?
                 booking.save
-                flash[:notice] = ['Transation Successful! Your booking was reserved :)']
+                flash[:success] = ['Transation Successful! Your booking was reserved :)']
                 redirect_to event_booking_path(event, booking) 
             else
                 flash[:notice] = ['Something went wrong. No transaction occurred.']
