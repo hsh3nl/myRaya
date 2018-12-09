@@ -54,6 +54,10 @@ gem 'braintree'
 # HTTP requests with http gem
 gem 'http'
 
+# AWS S3
+gem 'carrierwave-aws'
+gem 'aws-sdk-rails'
+
 # END
 
 # Use ActiveStorage variant
