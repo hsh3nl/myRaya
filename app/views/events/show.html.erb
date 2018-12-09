@@ -72,6 +72,9 @@
                     <li class="list-group-item text-center"><small class='text-muted'>- N A T I O N A L I T Y -</small><br> Malaysian</li>
                     <li class="list-group-item text-center"><small class='text-muted'>- M Y &nbsp P U N C H L I N E -</small><br><span class = 'font-italic '>"I'd like to share my culture with the world :)"</span></li>
                     <li class="list-group-item text-center"><small class='text-muted'>- U P C O M I N G &nbsp E V E N T S -</small><br><%=@event.user.events.count%></li>
+                    <% if current_user && current_user == @event.user %>
+                      <li class="list-group-item text-center"><a href="/events/<%=@event.id%>/edit" class="btn btn-lg pink-btn w-100">E D I T &nbsp&nbsp E V E N T</a></li>
+                    <% end %>
                     <li class="list-group-item text-center"><a href="/users/<%=@event.user_id%>" class="btn btn-lg pink-btn w-100">S E E &nbsp&nbsp P R O F I L E</a></li>
                   </ul>
               </div>
