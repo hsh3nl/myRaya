@@ -59,8 +59,6 @@ class EventsController < ApplicationController
     end
 
     def update
-        byebug
-
         event = Event.find_by(id: params[:id])
         check_user_event(event)
 
