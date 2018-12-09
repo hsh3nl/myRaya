@@ -7,7 +7,7 @@
         <%= button_to "Upcoming Celebrations", events_path, method: :get, class:'btn btn-lg home-btn' %>
     </div>
 
-    <% if current_user %>
+    <% if current_user.nil? %>
     <hr class='col-10 mt-5'>
 
     <div id='user'>
