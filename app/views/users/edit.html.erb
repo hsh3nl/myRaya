@@ -1,2 +1,108 @@
+<div class="container d-flex justify-content-center align-items-center bg-light rounded" id='signup-container'>
+  <div class="row col d-flex justify-content-center align-items-center pt-4 pb-3">
+        <div class="col pb-1 d-flex justify-content-center">
+            <img src=<%=image_url('logo.png')%> width="100" height="100" class="d-inline-block align-top" alt="">
+        </div>
+    
+        <div class="w-100 "></div>
+        <h3>myRaya </h3>
+        <div class="w-100 "></div>
+        <p class="text-muted">Edit Profile Details</p>
+        <hr class="col-11">
+        <div class="w-100 mb-2"></div>
+        <span class='mb-3'>- Personal Details -</span>
+        <%= form_with model:@user, local: true  do |form| %>
+        <% if @user.image? %>
+        <div id='profile-img' class='d-flex justify-content-center'>
+                        <% if @user.image? %>
+                            <%= image_tag(@user.image.url, alt: 'Image', id:'profile-pix')%>
+                        <% else %>
+                            <%= image_tag(image_url("no_pix.png"), alt: 'Image')%>
+                        <% end %>
+        </div>
+        <div>
+      
+    </div>
+  <% end %>
+        <div class="w-100 mb-3"></div>
+      
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>First Name</small></span>
+        </div>
+        <%= form.text_field :first_name, class:"form-control-sm", :size=>"50" %>
+      </div>
+    
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Last Name</small></span>
+        </div>
+        <%= form.text_field :last_name, class:"form-control-sm", :size=>"50" %>
+      </div>
 
-<%= render "form" %>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Contact Number</small></span>
+        </div>
+        <%= form.text_field :tel_no, class:"form-control-sm", :size=>"50" %>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Gender</small></span>
+        </div>
+        <%= form.select :gender, ['Male','Female','Prefer not to say'], :include_blank => "Choose gender" %>
+      </div>
+    
+      <div class="input-group mb-3 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Change Picture</small></span>
+        </div>
+        <%= form.file_field :image, class:"form-control-sm"  %>
+      </div>
+      <div class="input-group mb-3 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Remove Picture?</small></span>
+        </div>
+        <div class='ml-5 pt-1'>
+            <%= form.check_box :remove_image, class:"form-check-input text-center", type:"checkbox", value:"", id:"defaultCheck1"    %>
+            <label class="form-check-label" for="defaultCheck1">
+                Yes
+            </label>
+        </div>
+      </div>
+      <hr class="col-11">
+        <div class="w-100 mb-2"></div>
+        - Authenticate Changes -
+        <div class="w-100 mb-3"></div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Email Address</small></span>
+        </div>
+        <%= form.text_field :email, class:"form-control-sm", :size=>"50" %>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Password</small></span>
+        </div>
+        <%= form.password_field :password, class:"form-control-sm", :size=>"50" %>
+      </div>
+
+      <div class="input-group mb-3 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>Retype Password</small></span>
+        </div>
+        <%= form.password_field :password_confirmation, class:"form-control-sm", :size=>"50" %>
+      </div>
+
+<hr class="col-11">
+        <%= form.submit 'Submit Changes', class:' btn btn-sm pink-btn mb-2'%>
+        <% end %>
+  </div>
+</div>
+
+<div class="w-100 mb-5"></div>
+
+

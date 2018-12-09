@@ -19,13 +19,16 @@
                     <small class="text-muted">Event by: <%=e.user.first_name%> <%=e.user.last_name%></small>
                 </div> 
                 <div class="card-footer">
-                    <small class="text-muted">Places left: <%=e.places_left%> </small>
-                    <%= button_to "Join!", new_event_booking_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;float:right;'}%>
+                    <% if e.places_left > 0 %>
+                        <small class="text-muted">Places left: <%=e.places_left%> </small>
+                    <% else %>
+                        <small class="text-muted">SOLD OUT!</small>
+                    <% end %>
                     <%= button_to "Show", event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;float:right;'}%>    
                     <%# Boostrap warning: use <a> instead of button tag and tabindex for browser compatibility%>
-                    <% if e.within_days(5) %>
+                    <% if current_user && e.within_days(5) %>
                         <a style='display:inline-block;float:right;' class='btn btn-sm btn-light weather-btn' id="event-<%=e.id%>" tabindex="-1">Weather</a>  
-                    <% else %>
+                    <% elsif current_user %>
                         <span style='display:inline-block;float:right;' class='btn btn-sm weather-btn text-muted' id="event-<%=e.id%>" tabindex="-1">Weather</span>  
                     <% end %>
                 </div>            
@@ -36,7 +39,9 @@
 
 <hr />
 <%= paginate @events %>
+<div class='text-center mb-3'>
 <%= page_entries_info @events %>
+</div>
 
 
 

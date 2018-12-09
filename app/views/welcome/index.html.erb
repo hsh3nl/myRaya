@@ -1,8 +1,60 @@
-<h1>myRaya app</h1>
-<h3>Bringing Malaysia's best celebrations to you!</h3>
+<div class="videoWrapper text-center" >
+    <div id="player" ></div>
+        <div class='main-div'>
+        <%= image_tag 'logo.png', :class => "main-page-logo"%>
+        <h3 class='mb-5'>myRaya</h3>
+        <h1 class='mb-4'>Bringing Malaysia's best celebrations to you!</h1>
+        <%= button_to "Upcoming Celebrations", events_path, method: :get, class:'btn btn-lg home-btn' %>
+    </div>
 
-<p>Uniting Malaysia and the rest of the World</p>
-<p>Intercultural exchange right at home!</p>
-<%= button_to "See Events", events_path, method: :get, class:'btn btn-sm btn-light' %>
+    <hr class='col-10 mt-5'>
 
+    <div id='user'>
+        <p>Event organisers & participants, your journey begins here!</p>
+        <p><strong>New Members</strong>  <a href="/sign_up" class="btn btn-sm home-btn">Sign Up</a></p>
+        <p><strong>Existing Members</strong>  <a href="/sign_in" class="btn btn-sm home-btn">Log In</a></p>
+    </div>
+</div>
+
+
+
+<script>
+    // 2. This code loads the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // 3. This function creates an <iframe> (and YouTube player)
+    //    after the API code downloads.
+    var player;
+    function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        height: '390',
+        width: '1000',
+        videoId: 'Mvjy7pCqydA',
+        suggestedQuality: 'highres',
+        events: {
+        'onReady': onPlayerReady,
+        }
+    });
+    }
+
+    // 4. The API will call this function when the video player is ready.
+    function onPlayerReady(event) {
+    event.target.playVideo();
+    player.mute();
+    var iframe = $("#player")
+
+    var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+        if (requestFullScreen) {
+        requestFullScreen.bind(iframe)();
+        }
+    }      
+    $( document ).ready(function() {
+       $('footer').remove()
+    });
+
+</script>
 

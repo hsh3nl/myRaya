@@ -31,7 +31,11 @@
                                     <small class="text-muted">Participants: <%=e.max_pax - e.places_left%> </small>
                                 </div> 
                                 <div class="card-footer">
-                                    <small class="text-muted">Places left: <%=e.places_left%> </small>
+                                    <% if e.places_left > 0 %>
+                                        <small class="text-muted">Places left: <%=e.places_left%> </small>
+                                    <% else %>
+                                        <small class="text-muted">SOLD OUT!</small>
+                                    <% end %>
                                     <%= button_to "Show Event", event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;float:right;'}%>    
                                 </div>            
                             </div>
