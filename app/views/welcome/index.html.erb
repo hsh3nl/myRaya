@@ -38,7 +38,12 @@
         videoId: 'Mvjy7pCqydA',
         suggestedQuality: 'highres',
         events: {
-        'onReady': onPlayerReady,
+            'onReady': onPlayerReady,
+            'onStateChange': function(e){
+                if(e.data === YT.PlayerState.ENDED){
+                    player.loadVideoById('Mvjy7pCqydA');
+                }
+            }       
         }
     });
     }
