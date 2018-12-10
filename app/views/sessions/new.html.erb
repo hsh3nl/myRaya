@@ -11,11 +11,11 @@
         <hr class=" col-10">
       
       
+      <%= form_with scope: :user, local: true  do |form| %>
       <div class="input-group mb-3 d-flex justify-content-center">
         <div class="input-group-prepend">
           <span class="input-group-text form-control-sm" id="basic-addon1"><i class="fas fa-user-circle"></i></span>
         </div>
-        <%= form_with scope: :user, local: true  do |form| %>
         <%= form.text_field :email, class:"form-control-sm", placeholder:"Email" %>
       </div>
     
@@ -32,8 +32,10 @@
         <%= form.check_box :remember_me, class:'custom-control-input', id:'rmb-me' %> 
         <label class="custom-control-label pl-1" for="rmb-me"><small>Remember me</small></label>
       </div>
+      <div class='text-center'>
         <%= form.submit 'Sign In', class:' btn btn-sm col-9 pink-btn mb-2'%>
-        <% end %>
+      </div>
+      <% end %>
   </div>
 </div>
 

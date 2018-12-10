@@ -54,7 +54,7 @@
         requestFullScreen.bind(iframe)();
         }
     }      
-    $( document ).ready(function() {
+    $( document ).on('turbolinks:load', function() {
        $('footer').remove()
     });
 

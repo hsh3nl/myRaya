@@ -36,7 +36,7 @@
                                     <% else %>
                                         <small class="text-muted">SOLD OUT!</small>
                                     <% end %>
-                                    <%= button_to "Show Event", event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;float:right;'}%>    
+                                    <%= button_to "Show", event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;float:right;'}%>    
                                     <% if current_user == @user %>
                                         <%= button_to "Edit", edit_event_path(e), method: :get, class:'btn btn-sm btn-light', form: {style: 'display:inline-block;float:right;'}%>
                                     <% end %>
