@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
-$( document ).ready(function() {
+$(document).on('turbolinks:load', function() {
     $('#generate-code-btn').click(function(event){
       event.preventDefault();
       user_role = $('#role-selected').val();

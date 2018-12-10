@@ -157,7 +157,7 @@
 
 
 <script>
-  $( document ).ready(function() {
+  $( document ).on('turbolinks:load', function() {
     $( "#book-btn" ).click(function(event) {
       event.preventDefault();
       var no_of_pax = $('#pax-input').val();
@@ -165,9 +165,6 @@
       window.location.href = domain + "/events/" + <%=@event.id%> + '/bookings/new?no_of_pax=' + no_of_pax;
     });
   });
-
-
-
 </script>
 
 
