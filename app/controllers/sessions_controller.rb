@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
     def destroy
         cookies.delete :user_id
         reset_session
-    
+        flash[:notice] = ["You have logged out"]
         redirect_to root_path
     end
 

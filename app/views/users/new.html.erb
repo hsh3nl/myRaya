@@ -13,11 +13,11 @@
         - Personal Details -
         <div class="w-100 mb-3"></div>
       
+      <%= form_with model:@user, local: true  do |form| %>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>First Name</small></span>
         </div>
-        <%= form_with model:@user, local: true  do |form| %>
         <%= form.text_field :first_name, class:"form-control-sm", :size=>"50" %>
       </div>
     

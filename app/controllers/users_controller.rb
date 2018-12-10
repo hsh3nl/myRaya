@@ -20,6 +20,7 @@ class UsersController < ApplicationController
             password_confirmation: user_params[:password_confirmation]
             ) 
         if user.save
+            flash[:success] = ['Registration complete! Please sign in.']
             redirect_to sign_in_path
         else
             flash[:notice] = user.errors.full_messages
@@ -37,13 +38,14 @@ class UsersController < ApplicationController
         password = user_params[:password]
         if password == user_params[:password_confirmation] && @user.try(:authenticate, password)
             if @user.update(first_name: user_params[:first_name], last_name: user_params[:last_name], email: user_params[:email], tel_no: user_params[:tel_no], gender: user_params[:gender], image: user_params[:image])
+                flash[:success] = ['Profile details successfully updated.']
                 redirect_to @user
             else 
                 flash[:notice] = @user.errors.full_messages
                 redirect_to edit_user_path(@user)
             end
         else
-            flash[:notice] = 'Incorrect password or passwords do not match. Try again'
+            flash[:notice] = ['Incorrect password or passwords do not match. Try again']
             redirect_to edit_user_path(@user)
         end
     end
