@@ -34,7 +34,7 @@ ActiveRecord::Base.transaction do
     event['description'] = Faker::StrangerThings.quote
     event['address'] = Faker::Address.street_address
     event['postal_code'] = rand(10000..70000)
-    event['state'] = ['Perlis', 'Kedah', 'Kuala Lumpur', 'Perak', 'Kelantan', 'Terengganu', 'Penang', 'Melacca', 'Negeri Sembilan', 'Selangor', 'Johor', 'Pahang', 'Sarawak', 'Sabah'].sample
+    event['state'] = ['Kuala Lumpur', 'Labuan', 'Johor', 'Kedah', 'Kelantan', 'Melaka', 'Negeri Sembilan', 'Pahang', 'Pulau Pinang', 'Perak', 'Perlis', 'Sabah', 'Sarawak', 'Selangor', 'Terengganu'].sample
     event['date'] = Faker::Date.between_except(Date.today, 1.year.from_now, Date.today)
     event['start_hr'] = ('00'..'23').to_a.sample
     event['start_min'] = ('00'..'59').to_a.sample

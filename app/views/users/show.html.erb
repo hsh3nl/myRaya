@@ -23,15 +23,24 @@
                 <%= @user.gender %>
                 </p>
 
-                <p>
-                <strong>Contact number: </strong>
-                <%= @user.tel_no %>
-                </p>
+                <% if current_user && current_user.id == @user.id %>
+                    <p>
+                    <strong>Contact number: </strong>
+                    <%= @user.tel_no %>
+                    </p>
 
-                <p>
-                <strong>Email address: </strong>
-                <%= @user.email %>
-                </p>
+                    <p>
+                    <strong>Email address: </strong>
+                    <%= @user.email %>
+                    </p>
+                <% end %>
+
+                <% if @user.events %>
+                    <p>
+                    <strong>Organising: </strong>
+                    <%= @user.events.count %> events
+                    </p>
+                <% end %>
 
 
                 <% if current_user && current_user.id == @user.id %>    
