@@ -120,7 +120,7 @@
                         <br><span class="badge badge-pill badge-light">Latest Booking :</span><%=@booking_analytics[:bookings][:last_new].to_s%>
                     </li>
                     <li class="list-group-item"><span class='text-muted'>- C A S H F L O W -</span>
-                        <br><span class="badge badge-pill badge-light">MYR <%=@booking_analytics[:bookings][:cashflow]%></span> cashflow since <%= if params[:days] then params[:days] else '30' end %> day(s) ago
+                        <br><span class="badge badge-pill badge-light">MYR <%=@booking_analytics[:cashflow]%></span> cashflow since <%= if params[:days] then params[:days] else '30' end %> day(s) ago
                     </li>
                     <li class="list-group-item">
                         <div class="input-group px-5 py-2">

@@ -27,7 +27,7 @@ class BookingsController < ApplicationController
         @client_token = Braintree::ClientToken.generate
         promo = 5
         @discount = sprintf('%.2f', promo)
-        @discounted_price = sprintf('%.2f', params[:no_of_pax].to_i * @event.price_per_pax - @promo)
+        @discounted_price = sprintf('%.2f', params[:no_of_pax].to_i * @event.price_per_pax - promo)
     end
 
     def create
