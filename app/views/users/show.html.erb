@@ -107,7 +107,7 @@
                     <li class="list-group-item"><span class='text-muted'>- U S E R S -</span>
                         <br><span class="badge badge-pill badge-light "><%=@user_analytics[:users][:count_all]%></span> user(s)
                         <br><span class="badge badge-pill badge-light"><%=@user_analytics[:users][:count_since].to_s%></span> new users since <%= if params[:days] then params[:days] else '30' end %> day(s) ago 
-                        <br><span class="badge badge-pill badge-light">Latest Sign Up :</span> <%=@user_analytics[:users][:last_new].to_s%>
+                        <br><br><span class="badge badge-pill badge-light">Latest Sign Up :</span> <%=@user_analytics[:users][:last_new].to_s%>
                     </li>
                     <li class="list-group-item"><span class='text-muted'>- R O L E S -</span>
                         <br><span class="badge badge-pill badge-light "><%=@user_analytics[:all_roles][:customer_count_all]%></span> customers(s)
@@ -117,12 +117,12 @@
                     <li class="list-group-item"><span class='text-muted'>- E V E N T S -</span>
                         <br><span class="badge badge-pill badge-light"><%=@event_analytics[:count_all]%></span> total event(s)
                         <br><span class="badge badge-pill badge-light"><%=@event_analytics[:count_since].to_s%></span> new event(s) since<%= if params[:days] then params[:days] else '30' end %> day(s) ago
-                        <br><span class="badge badge-pill badge-light">Latest Registered Event :</span><%=@event_analytics[:last_new].to_s%>
+                        <br><br><span class="badge badge-pill badge-light">Latest Registered Event :</span><%=@event_analytics[:last_new].to_s%>
                     </li>
                     <li class="list-group-item"><span class='text-muted'>- B O O K I N G S -</span>
                         <br><span class="badge badge-pill badge-light"><%=@booking_analytics[:bookings][:count_all]%></span> total booking(s)
                         <br><span class="badge badge-pill badge-light"><%=@booking_analytics[:bookings][:count_since].to_s%></span> new bookings(s) since <%= if params[:days] then params[:days] else '30' end %> day(s) ago
-                        <br><span class="badge badge-pill badge-light">Latest Booking :</span><%=@booking_analytics[:bookings][:last_new].to_s%>
+                        <br><br><span class="badge badge-pill badge-light">Latest Booking :</span><%=@booking_analytics[:bookings][:last_new].to_s%>
                     </li>
                     <li class="list-group-item"><span class='text-muted'>- C A S H F L O W -</span>
                         <br><span class="badge badge-pill badge-light">MYR <%=@booking_analytics[:cashflow]%></span> cashflow since <%= if params[:days] then params[:days] else '30' end %> day(s) ago
