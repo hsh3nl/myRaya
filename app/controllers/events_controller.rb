@@ -29,6 +29,12 @@ class EventsController < ApplicationController
     end
 
     def create
+        if event_params[:attachments]
+            image_one = event_params[:attachments][0] if event_params[:attachments][0]
+            image_two = event_params[:attachments][1] if event_params[:attachments][1]
+            image_three = event_params[:attachments][2] if event_params[:attachments][2]
+        end
+
         event = Event.new(
             name: event_params[:name],
             description: event_params[:description],
@@ -42,7 +48,9 @@ class EventsController < ApplicationController
             end_min: event_params[:end_min],
             max_pax: event_params[:max_pax],
             price_per_pax: event_params[:price_per_pax],
-            attachments: event_params[:attachments],
+            image_one: image_one,
+            image_two: image_two,
+            image_three: image_three,
             user_id: current_user.id
             ) 
         if event.save
@@ -63,7 +71,30 @@ class EventsController < ApplicationController
         event = Event.find_by(id: params[:id])
         check_user_event(event)
 
-        if event.update(name: event_params[:name], description: event_params[:description], address: event_params[:address], postal_code: event_params[:postal_code], state: event_params[:state], date: event_params[:date], start_hr: event_params[:start_hr], start_min: event_params[:start_min], end_hr: event_params[:end_hr], end_min: event_params[:end_min], max_pax: event_params[:max_pax], price_per_pax: event_params[:price_per_pax],attachments: event_params[:attachments])
+        if event_params[:attachments]
+            image_one = event_params[:attachments][0] if event_params[:attachments][0]
+            image_two = event_params[:attachments][1] if event_params[:attachments][1]
+            image_three = event_params[:attachments][2] if event_params[:attachments][2]
+        end
+
+        if event.update(
+            name: event_params[:name], 
+            description: event_params[:description], 
+            address: event_params[:address], 
+            postal_code: event_params[:postal_code], 
+            state: event_params[:state], 
+            date: event_params[:date], 
+            start_hr: event_params[:start_hr], 
+            start_min: event_params[:start_min], 
+            end_hr: event_params[:end_hr], 
+            end_min: event_params[:end_min], 
+            max_pax: event_params[:max_pax], 
+            price_per_pax: event_params[:price_per_pax],
+            image_one: image_one,
+            image_two: image_two,
+            image_three: image_three
+            )
+
             flash[:success] = ["Event successfully updated"]
             redirect_to event
         else 

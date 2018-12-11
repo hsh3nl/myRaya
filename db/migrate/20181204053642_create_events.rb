@@ -13,6 +13,11 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.string :end_min
       t.integer :max_pax
       t.decimal :price_per_pax
+      
+      t.string :image_one
+      t.string :image_two
+      t.string :image_three
+
       t.references :user, foreign_key: true
 
       t.timestamps
