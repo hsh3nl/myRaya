@@ -11,9 +11,9 @@
                 <h2><%= @user.first_name %> <%= @user.last_name %></h2>
                 <div id='profile-img'>
                     <% if @user.image? %>
-                        <%= image_tag(@user.image.url, alt: 'Image', id:'profile-pix')%>
+                        <%= image_tag(@user.image.url(:display), alt: 'Image', id:'profile-pix')%>
                     <% else %>
-                        <%= image_tag(image_url("no_pix.png"), alt: 'Image')%>
+                        <%= image_tag(image_url("no_pix.png"), alt: 'Image', id:'profile-pix')%>
                     <% end %>
                 </div>
                 <br>
