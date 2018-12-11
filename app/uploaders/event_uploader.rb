@@ -9,6 +9,7 @@ class EventUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
+
   if Rails.env.development? || Rails.env.test?
     storage :file 
 
@@ -17,24 +18,26 @@ class EventUploader < CarrierWave::Uploader::Base
     end
 
     version :thumb do
-      process resize_to_fit: [40, 40]
+      process resize_to_fill: [40, 40]
     end
   
     version :card do
-      process resize_and_crop: 300
+      process resize_to_fill: [300, 300]
     end
 
   elsif Rails.env.production?
     include Cloudinary::CarrierWave
+    process :tags => ["event pix"]
+    process :convert => "jpg"
 
     version :thumb do
       process :eager => true
-      process resize_to_fit: [40, 40]
+      process resize_to_fill: [40, 40]
     end
   
     version :card do
       process :eager => true
-      process resize_and_crop: 300
+      process resize_to_fill: [300, 300]
     end
   end
 
