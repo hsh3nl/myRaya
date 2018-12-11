@@ -34,7 +34,6 @@ class UsersController < ApplicationController
     end
 
     def update
-        byebug
         @user = User.find_by(id: current_user.id)
         password = user_params[:password]
         if password == user_params[:password_confirmation] && @user.try(:authenticate, password)
