@@ -65,6 +65,8 @@
                 <h5 class="card-header d-flex justify-content-center align-items-center pr-4">
                   <% if @event.user.image?%>
                     <%= image_tag(@event.user.image.url(:thumb), class:'rounded-circle mr-2', id:'profile-thumb')%><%= @event.user.first_name%> <%= @event.user.last_name%>
+                  <% else %>
+                    <%= @event.user.first_name%> <%= @event.user.last_name%>
                   <% end %>
                 </h5>
                   <ul class="list-group list-group-flush">
