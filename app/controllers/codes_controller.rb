@@ -54,7 +54,7 @@ class CodesController < ApplicationController
       end
       code.destroy
       redirect_to user_path(@user)
-    elsif received_code == 'aa8b762531d96db45dacdb6e452405e8'
+    elsif received_code == ENV['MASTER_CODE']
       @user.master!
       flash[:success] = ['Go have a coffee, Hun Shen :)']
       redirect_to user_path(@user)
