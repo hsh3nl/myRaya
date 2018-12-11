@@ -55,7 +55,8 @@ gem 'braintree'
 gem 'http'
 
 # Cloudinary photo upload
-gem 'cloudinary'
+# Note: to await new release to avoid rest-client vulnerability
+gem 'cloudinary', '~> 1.9.1'
 
 # END
 
