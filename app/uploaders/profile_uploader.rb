@@ -17,24 +17,25 @@ class ProfileUploader < CarrierWave::Uploader::Base
     end
 
     version :display do
-      process resize_and_crop: 200
+      process resize_to_fill: [200, 200]
     end
 
     version :thumb do
       process resize_to_fit: [40, 40]
     end
-
   elsif Rails.env.production?
     include Cloudinary::CarrierWave
+    process :tags => ["profile pix"]
+    process :convert => "jpg"
 
     version :display do
       process :eager => true
-      process resize_and_crop: 200
+      process resize_to_fill: [200, 200]
     end
 
     version :thumb do
       process :eager => true
-      process resize_to_fit: [40, 40]
+      process resize_to_fill: [40, 40]
     end
   end
 
