@@ -46,10 +46,12 @@ ActiveRecord::Schema.define(version: 2018_12_06_121217) do
     t.string "end_min"
     t.integer "max_pax"
     t.decimal "price_per_pax"
+    t.string "image_one"
+    t.string "image_two"
+    t.string "image_three"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.json "attachments"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

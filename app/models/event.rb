@@ -5,7 +5,9 @@ class Event < ApplicationRecord
   include PgSearch
   pg_search_scope :search_by_name_state, :against => [:name, :state]
 
-  mount_uploaders :attachments, EventUploader
+  mount_uploader :image_one, EventUploader
+  mount_uploader :image_two, EventUploader
+  mount_uploader :image_three, EventUploader
 
   validates :name, :description, :address, :postal_code, :state, :date, :start_hr, :start_min, :end_hr, :end_min, :max_pax, :price_per_pax, :user_id, presence: true
   validates :max_pax, :price_per_pax, numericality: { greater_than_or_equal_to: 0 }
@@ -48,5 +50,18 @@ class Event < ApplicationRecord
     # round down to the nearest multiple
     # the reason for this is so that the weather is taken before event
     lower_multiple = multiple.floor
+  end
+
+  # Custom method to return the array of all images of an event
+  def attachments
+    if image_one || image_two || image_three
+      event_images = []
+      event_images << image_one if image_one?
+      event_images << image_two if image_two?
+      event_images << image_three if image_three?
+    else
+      event_images = nil
+    end
+    return event_images
   end
 end

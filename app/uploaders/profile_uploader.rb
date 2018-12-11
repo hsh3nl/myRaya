@@ -26,7 +26,6 @@ class ProfileUploader < CarrierWave::Uploader::Base
   elsif Rails.env.production?
     include Cloudinary::CarrierWave
     process :tags => ["profile pix"]
-    process :convert => "jpg"
 
     version :display do
       process :eager => true

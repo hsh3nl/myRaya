@@ -13,7 +13,7 @@
         <div class="col-md-4 order-md-2 mb-4 mt-5">
           <h4 class="d-flex justify-content-between align-items-center mb-3 pl-3">
             <span><i class="fas fa-camera-retro"></i>&nbsp&nbsp&nbsp P H O T O S</span>
-          <% if @event.attachments? %>
+          <% if @event.attachments %>
             <span class="badge badge-info badge-pill mr-2"><%= @event.attachments.count%></span>
           <% else%>
             <span class="badge badge-info badge-pill mr-2">0</span>
@@ -23,14 +23,14 @@
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <% if @event.attachments? %>
+                  <% if @event.attachments %>
                     <% @event.attachments.drop(1).each_with_index do |a,i| %>
                       <li data-target="#carouselExampleIndicators" data-slide-to=<%=i%>></li>
                     <% end %>
                   <% end %>
                 </ol>
                 <div class="carousel-inner">
-                  <% if @event.attachments? %>
+                  <% if @event.attachments %>
                       <div class="carousel-item active">
                         <img class="d-block w-100" src="<%= @event.attachments[0].url(:card)%>" alt="First slide">
                       </div>
