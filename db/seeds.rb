@@ -11,13 +11,13 @@ user['password'] = '12345'
 user['password_confirmation'] = '12345'
 
 ActiveRecord::Base.transaction do
-  20.times do 
+  5.times do 
     user['first_name'] = Faker::Name.first_name
     user['last_name'] = Faker::Name.last_name
     user['email'] = Faker::Internet.email
     user['gender'] = ['Male', 'Female', 'Prefer not to say'].sample
     user['tel_no'] = Faker::PhoneNumber.phone_number
-    user['image'] = [Rails.root.join("app/assets/images/seeds/seed1.png").open, Rails.root.join("app/assets/images/seeds/seed2.png").open, Rails.root.join("app/assets/images/seeds/seed3.png").open, ''].sample
+    user['image'] = [Rails.root.join("app/assets/images/seeds/seed1.jpg").open, Rails.root.join("app/assets/images/seeds/seed2.jpg").open, Rails.root.join("app/assets/images/seeds/seed3.jpg").open, ''].sample
     
     User.create(user)
   end
@@ -29,9 +29,9 @@ uids = []
 User.all.each { |u| uids << u.id }
 
 ActiveRecord::Base.transaction do
-  40.times do 
-    event['name'] = Faker::SwordArtOnline.location
-    event['description'] = Faker::StrangerThings.quote
+  20.times do 
+    event['name'] = ['Chinese New Year', 'Deepavali', 'Hari Raya', 'Thaipusam', 'Ponggal'].sample
+    event['description'] = ['Come celebrate with our family! Join us now :)', 'We provide the best hospitality and cultural integration! You won\'t regret joining us', 'Our celebration is one of the highly rated to-do bucket list when visiting Malaysia! Dive into our culture, book now!'].sample
     event['address'] = Faker::Address.street_address
     event['postal_code'] = rand(10000..70000)
     event['state'] = ['Kuala Lumpur', 'Labuan', 'Johor', 'Kedah', 'Kelantan', 'Melaka', 'Negeri Sembilan', 'Pahang', 'Pulau Pinang', 'Perak', 'Perlis', 'Sabah', 'Sarawak', 'Selangor', 'Terengganu'].sample
