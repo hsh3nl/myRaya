@@ -19,7 +19,7 @@
                                 <% if e.attachments %>
                                     <%= link_to image_tag(e.attachments[0].url(:card), alt: 'Image', class:"card-img-top"), event_path(e) %>
                                 <% else %>
-                                    <img class="card-img-top" src="http://placehold.it/400x400" alt="Card image cap">
+                                    <img class="card-img-top" src="<%= image_url('logo.png')%>" alt="Card image cap">
                                 <% end %>                
 
                                 <div class="card-body">
@@ -60,7 +60,7 @@
                                 <% if b.event.attachments %>
                                     <%= link_to image_tag(b.event.attachments[0].url(:card), alt: 'Image', class:"card-img-top"), event_booking_path(b.event,b) %>
                                 <% else %>
-                                    <img class="card-img-top" src="http://placehold.it/400x400" alt="Card image cap">
+                                    <img class="card-img-top" src="<%= image_url('logo.png')%>" alt="Card image cap">
                                 <% end %>                
 
                                 <div class="card-body">

@@ -25,9 +25,9 @@
   </head>
 
   <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" id='navi-bar'>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" id='navi-bar' data-turbolinks="false">
         <a class="navbar-brand btn btn-light" href=<%=root_path%>>
-          <img src=<%=image_url('logo.png')%> width="30" height="30" class="d-inline-block align-top" alt="">
+          <img src=<%=image_url('logo.png')%> width="30" height="30" class="d-inline-block align-top" alt="" >
           myRaya
         </a>
 
@@ -72,7 +72,7 @@
       <% if flash[:notice] %>
         <div class='d-flex justify-content-center align-items-center'>
           <div class="alert alert-warning alert-dismissible fade show col-3" role="alert">
-            <strong>Notice Board:</strong> 
+            <strong>N O T I C E &nbsp&nbsp B O A R D</strong> 
             <hr> 
               <% flash[:notice].each do |n|%>
                 <div class="notice"><%= n %></div>
@@ -85,7 +85,7 @@
       <% elsif flash[:success] %>
         <div class='d-flex justify-content-center align-items-center'>
           <div class="alert alert-success alert-dismissible fade show col-3" role="alert">
-            <strong>Success!</strong> 
+            <strong>S U C C E S S</strong> 
             <hr> 
               <% flash[:success].each do |n|%>
                 <div class="notice"><%= n %></div>
@@ -124,7 +124,7 @@
 $('#search-input').css('font-family', "'Oxygen', sans-serif");
 
 $( document ).on('turbolinks:load', function() {
-  $(".alert").fadeTo(5000, 300).slideUp(300, function(){
+  $(".alert").fadeTo(3000, 300).slideUp(300, function(){
     $(".alert").alert(300);
   });   
 

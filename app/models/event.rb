@@ -54,7 +54,7 @@ class Event < ApplicationRecord
 
   # Custom method to return the array of all images of an event
   def attachments
-    if image_one || image_two || image_three
+    if image_one? || image_two? || image_three?
       event_images = []
       event_images << image_one if image_one?
       event_images << image_two if image_two?
