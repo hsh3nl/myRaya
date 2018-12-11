@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
         @event = Event.find_by(id: params[:event_id])
         @booking = Booking.find_by(id: params[:id])
         @user = @booking.user
-        @paid = sprintf('%.2f', @event.price_per_pax * @booking.no_of_pax)
+        @paid = sprintf('%.2f', @booking.paid)
 
         if @event.within_days(5)
             hour_count = @event.nearest_hr_count_with_multiple(3) + 1
@@ -25,20 +25,22 @@ class BookingsController < ApplicationController
         @booking = {no_of_pax: params[:no_of_pax]}
         @price = sprintf('%.2f', params[:no_of_pax].to_i * @event.price_per_pax)
         @client_token = Braintree::ClientToken.generate
-        @promo = 5
-        @discount = sprintf('%.2f', @promo)
+        promo = 5
+        @discount = sprintf('%.2f', promo)
         @discounted_price = sprintf('%.2f', params[:no_of_pax].to_i * @event.price_per_pax - @promo)
     end
 
     def create
         event = Event.find_by(id: checkout_params[:event_id])
-        promo = 5
-        discounted_price = checkout_params[:no_of_pax].to_i * event.price_per_pax - promo
+        discount = 5
+        checkout_price = checkout_params[:no_of_pax].to_i * event.price_per_pax - discount
         booking = Booking.new(
             no_of_pax: checkout_params[:no_of_pax],
             spec_req: checkout_params[:spec_req],
             user_id: current_user.id,
-            event_id: event.id
+            event_id: event.id,
+            paid: checkout_price,
+            discount: discount
             )
         
         if booking.valid?
@@ -46,7 +48,7 @@ class BookingsController < ApplicationController
             nonce_from_the_client = checkout_params[:payment_method_nonce]
         
             result = Braintree::Transaction.sale(
-            :amount => discounted_price,
+            :amount => checkout_price,
             :payment_method_nonce => nonce_from_the_client,
             :options => {
                 :submit_for_settlement => true

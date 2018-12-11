@@ -4,7 +4,6 @@
         <p class="lead">Please check the event and booking details before checkout</p>
       </div>
 <hr class='my-5'>
-
       <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -31,12 +30,9 @@
               <strong>MYR <%=@discounted_price%></strong>
             </li>
           </ul>
-
-          
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3"><i class="fas fa-person-booth"></i>&nbsp&nbsp&nbsp B O O K I N G &nbsp&nbsp D E T A I L S &nbsp&nbsp </h4>
-            
           <ul class="list-group list-group-flush mb-5">
             <li class="list-group-item"><small class='text-muted'>~ B O O K I N G &nbsp F O R ~</small><br><%=@booking[:no_of_pax]%> participant(s)</li>
             <li class="list-group-item"><small class='text-muted'>~ T O T A L &nbsp T I C K E T &nbsp P R I C E ~</small><br>MYR <%=@price%></li>
@@ -51,13 +47,11 @@
             </li>
           </ul>
 
-
           <h4 class="mb-3"><i class="fas fa-torii-gate"></i>&nbsp&nbsp&nbsp E V E N T &nbsp&nbsp D E T A I L S </h4>
           <ul class="list-group list-group-flush mb-5">
             <li class="list-group-item"><small class='text-muted'>~ N A M E ~</small><br><%=@event.name%></li>
             <li class="list-group-item"><small class='text-muted'>~ D E S C R I P T I O N ~</small><br><%=@event.description%></li>
           </ul>
-
 
           <h4 class="mb-3"><i class="fas fa-map-marked-alt"></i>&nbsp&nbsp&nbsp L O C A T I O N</h4>
           <ul class="list-group list-group-flush mb-5">
@@ -73,10 +67,6 @@
             <li class="list-group-item"><small class='text-muted'>~ E V E N T &nbsp S T A R T S ~</small><br><%=@event.start_hr%> : <%=@event.start_min%></li>
             <li class="list-group-item"><small class='text-muted'>~ E V E N T &nbsp E N D S ~</small><br><%=@event.end_hr%> : <%=@event.end_min%></li>
           </ul>
-
-
-
-           
 
             <h4 class="mb-3"><i class="far fa-credit-card"></i>&nbsp&nbsp&nbsp C H E C K O U T: &nbsp&nbsp MYR <%=@discounted_price%></h4>
 

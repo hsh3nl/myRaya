@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = {}
-user['password'] = '12345'
-user['password_confirmation'] = '12345'
+user['password'] = ENV['RAND_PASS']
+user['password_confirmation'] = ENV['RAND_PASS']
 
 ActiveRecord::Base.transaction do
   5.times do 
@@ -21,6 +21,15 @@ ActiveRecord::Base.transaction do
     
     User.create(user)
   end
+
+  user['first_name'] = 'Hun Shen'
+  user['last_name'] = 'L'
+  user['email'] = ENV['RAND_EMAIL']
+  user['gender'] = 'Male'
+  user['tel_no'] = '018-9854895'
+  user['image'] = Rails.root.join("app/assets/images/seeds/seed0.jpg").open
+    
+  User.create(user)
 end 
 
 # Seed Events
