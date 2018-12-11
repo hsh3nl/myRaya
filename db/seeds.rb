@@ -42,7 +42,8 @@ ActiveRecord::Base.transaction do
     event['end_min'] = ('00'..'59').to_a.sample
     event['max_pax'] = rand(1..20)
     event['price_per_pax'] = rand(10..300)
-    event['attachments'] = [[Rails.root.join("app/assets/images/seeds/cny1.jpg").open,Rails.root.join("app/assets/images/seeds/cny2.png").open],[Rails.root.join("app/assets/images/seeds/dee1.jpg").open,Rails.root.join("app/assets/images/seeds/dee2.jpeg").open],[Rails.root.join("app/assets/images/seeds/raya1.png").open,Rails.root.join("app/assets/images/seeds/raya2.png").open]].sample
+    event['image_one'] = [Rails.root.join("app/assets/images/seeds/cny1.jpg").open, Rails.root.join("app/assets/images/seeds/dee1.jpg").open, Rails.root.join("app/assets/images/seeds/raya1.png").open].sample
+    event['image_two'] = [Rails.root.join("app/assets/images/seeds/cny2.png").open, Rails.root.join("app/assets/images/seeds/dee2.jpeg").open, Rails.root.join("app/assets/images/seeds/raya2.png").open].sample
 
     event['user_id'] = uids.sample
 
