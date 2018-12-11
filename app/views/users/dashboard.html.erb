@@ -15,13 +15,38 @@
                     <% @user.events.each do |e| %>
                         <div class="col-lg-6 col-md-12 col-sm-12 mt-3 mb-2">
                             <div class="card h-100 ">
-
                                 <% if e.attachments %>
-                                    <%= link_to image_tag(e.attachments[0].url(:card), alt: 'Image', class:"card-img-top"), event_path(e) %>
+                                    <div id="carouselExampleIndicators-e<%=e.id%>" class="carousel slide" data-ride="carousel" data-interval="false">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carouselExampleIndicators-e<%=e.id%>" data-slide-to="0" class="active"></li>
+                                            <% if e.attachments %>
+                                                <% e.attachments.drop(1).each_with_index do |a,i| %>
+                                                <li data-target="#carouselExampleIndicators-e<%=e.id%>" data-slide-to=<%=i%>></li>
+                                                <% end %>
+                                            <% end %>
+                                        </ol>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img class="d-block w-100" src="<%= e.attachments[0].url(:card)%>" alt="First slide">
+                                            </div>
+                                            <% e.attachments.drop(1).each do |attachment| %>
+                                                <div class="carousel-item">
+                                                    <img class="d-block w-100" src="<%= attachment.card.url%>" alt="Next slide">
+                                                </div>
+                                            <% end %>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleIndicators-e<%=e.id%>" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleIndicators-e<%=e.id%>" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
                                 <% else %>
                                     <img class="card-img-top" src="<%= image_url('logo.png')%>" alt="Card image cap">
-                                <% end %>                
-
+                                <% end %>           
                                 <div class="card-body">
                                     <a href=<%=event_path(e)%>><h4 class="card-title"><%=e.name%></h4></a>
                                     <small><%=e.state%>, Malaysia</small><br>
@@ -58,10 +83,37 @@
                             <div class="card h-100 ">
 
                                 <% if b.event.attachments %>
-                                    <%= link_to image_tag(b.event.attachments[0].url(:card), alt: 'Image', class:"card-img-top"), event_booking_path(b.event,b) %>
+                                    <div id="carouselExampleIndicators-b<%=b.id%>" class="carousel slide" data-ride="carousel" data-interval="false">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carouselExampleIndicators-b<%=b.id%>" data-slide-to="0" class="active"></li>
+                                            <% if b.event.attachments %>
+                                                <% b.event.attachments.drop(1).each_with_index do |a,i| %>
+                                                <li data-target="#carouselExampleIndicators-b<%=b.id%>" data-slide-to=<%=i%>></li>
+                                                <% end %>
+                                            <% end %>
+                                        </ol>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img class="d-block w-100" src="<%= b.event.attachments[0].url(:card)%>" alt="First slide">
+                                            </div>
+                                            <% b.event.attachments.drop(1).each do |attachment| %>
+                                                <div class="carousel-item">
+                                                    <img class="d-block w-100" src="<%= attachment.card.url%>" alt="Next slide">
+                                                </div>
+                                            <% end %>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleIndicators-b<%=b.id%>" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleIndicators-b<%=b.id%>" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
                                 <% else %>
                                     <img class="card-img-top" src="<%= image_url('logo.png')%>" alt="Card image cap">
-                                <% end %>                
+                                <% end %>               
 
                                 <div class="card-body">
                                     <a href=<%=event_booking_path(b.event,b)%>><h4 class="card-title"><%=b.event.name%></h4></a>
