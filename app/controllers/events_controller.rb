@@ -29,9 +29,11 @@ class EventsController < ApplicationController
     end
 
     def create
-        image_one = event_params[:attachments][0]
-        image_two = event_params[:attachments][1]
-        image_three = event_params[:attachments][2]
+        if event_params[:attachments]
+            image_one = event_params[:attachments][0] if event_params[:attachments][0]
+            image_two = event_params[:attachments][1] if event_params[:attachments][1]
+            image_three = event_params[:attachments][2] if event_params[:attachments][2]
+        end
 
         event = Event.new(
             name: event_params[:name],
@@ -69,9 +71,11 @@ class EventsController < ApplicationController
         event = Event.find_by(id: params[:id])
         check_user_event(event)
 
-        image_one = event_params[:attachments][0]
-        image_two = event_params[:attachments][1]
-        image_three = event_params[:attachments][2]
+        if event_params[:attachments]
+            image_one = event_params[:attachments][0] if event_params[:attachments][0]
+            image_two = event_params[:attachments][1] if event_params[:attachments][1]
+            image_three = event_params[:attachments][2] if event_params[:attachments][2]
+        end
 
         if event.update(
             name: event_params[:name], 
