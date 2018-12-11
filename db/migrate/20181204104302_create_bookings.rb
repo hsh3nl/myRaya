@@ -5,6 +5,8 @@ class CreateBookings < ActiveRecord::Migration[5.2]
       t.string :spec_req
       t.references :user, foreign_key: true
       t.references :event, foreign_key: true
+      t.decimal :paid
+      t.decimal :discount
 
       t.timestamps
     end

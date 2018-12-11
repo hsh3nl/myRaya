@@ -56,7 +56,6 @@
             <div class="card card-body col-lg-7 col-md-11 mb-4" >
                 <h2>Promo Code</h2>
                 <p class="text-muted"><small>Redeem a promo code</small></p>
-
                 <%= form_with scope: :promo_code, remote: true, url: user_promo_code_path(@user), class:'card p-2'  do |form| %>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -68,8 +67,6 @@
                         </div>
                     </div>
                 <% end %>
-
-                
             </div>            
         </div>
         <% end %>
@@ -77,12 +74,12 @@
         <% if current_user && current_user.id == @user.id && current_user.master? %>
             <div class='row d-flex justify-content-center '>
             
-                <div class="card card-body col-lg-7 col-md-11" >
+                <div class="card card-body col-lg-7 col-md-11 mb-4" >
                     <h2>Generate User Role Code</h2>
                     <p class="text-muted"><small>Issue a code to assign user roles</small></p>
 
                     <form class="card p-2 mb-3">
-                        <div class="input-group">
+                        <div class="input-group ">
                             <%= select_tag 'roles', options_for_select(['Customer', 'Moderator', 'Master' ]), id:'role-selected', class:'form-control'%>
                             <div class="input-group-append">
                                 <button class="btn btn-sm pink-btn " id='generate-code-btn'>Generate</button>
@@ -95,8 +92,63 @@
                     <ul class="list-group" id='code-result'></ul> 
                 </div>            
             </div>
+
+            <div class='row p-2 d-flex justify-content-center'>
+              <div class='card card-body col-lg-7 col-md-11 mb-4'>
+                <h5 class="card-header d-flex justify-content-center align-items-center pr-4">
+                <%= image_tag('mini-logo.png', class:'rounded-circle mr-2')%>
+                    <% if params[:days]%>
+                        myRaya Analytics d-<%= params[:days] %>
+                    <% else %>
+                        myRaya Analytics d-30
+                    <% end %>
+                </h5>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><span class='text-muted'>- U S E R S -</span>
+                        <br><span class="badge badge-pill badge-light "><%=@user_analytics[:users][:count_all]%></span> total user(s)
+                        <br><span class="badge badge-pill badge-light"><%=@user_analytics[:users][:count_since].to_s%></span> new users since <%= if params[:days] then params[:days] else '30' end %> day(s) ago 
+                        <br><span class="badge badge-pill badge-light">Latest Sign Up :</span> <%=@user_analytics[:users][:last_new].to_s%>
+                    </li>
+                    <li class="list-group-item"><span class='text-muted'>- E V E N T S -</span>
+                        <br><span class="badge badge-pill badge-light"><%=@event_analytics[:count_all]%></span> total event(s)
+                        <br><span class="badge badge-pill badge-light"><%=@event_analytics[:count_since].to_s%></span> new event(s) since<%= if params[:days] then params[:days] else '30' end %> day(s) ago
+                        <br><span class="badge badge-pill badge-light">Latest Registered Event :</span><%=@event_analytics[:last_new].to_s%>
+                    </li>
+                    <li class="list-group-item"><span class='text-muted'>- B O O K I N G S -</span>
+                        <br><span class="badge badge-pill badge-light"><%=@booking_analytics[:bookings][:count_all]%></span> total booking(s)
+                        <br><span class="badge badge-pill badge-light"><%=@booking_analytics[:bookings][:count_since].to_s%></span> new bookings(s) since <%= if params[:days] then params[:days] else '30' end %> day(s) ago
+                        <br><span class="badge badge-pill badge-light">Latest Booking :</span><%=@booking_analytics[:bookings][:last_new].to_s%>
+                    </li>
+                    <li class="list-group-item"><span class='text-muted'>- C A S H F L O W -</span>
+                        <br><span class="badge badge-pill badge-light">MYR <%=@booking_analytics[:bookings][:cashflow]%></span> cashflow since <%= if params[:days] then params[:days] else '30' end %> day(s) ago
+                    </li>
+                    <li class="list-group-item">
+                        <div class="input-group px-5 py-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text form-control" id="basic-addon1"><small>Days:</small></span>
+                            </div>
+                            <%= number_field_tag :days, nil, min: 1, class:"form-control", autocomplete: 'off', id:'analytics-input' %>
+                            <div class="input-group-append">
+                                <button class="btn btn-sm pink-btn " id='analytics-btn'>Analyse</button>
+                            </div>
+                        </div>
+                    </li>
+                  </ul>
+              </div>
+            </div>
         <% end %>
     </div>    
 </div>
+
+
+<script>
+  $( document ).on('turbolinks:load', function() {
+    $( "#analytics-btn" ).click(function(event) {
+      var days = $('#analytics-input').serialize();
+      var domain = location.origin;
+      window.location.href = domain + "/users/" + <%=@user.id%> + '?' + days;
+    });
+  });
+</script>
 
 

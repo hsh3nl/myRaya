@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2018_12_06_121217) do
     t.string "spec_req"
     t.bigint "user_id"
     t.bigint "event_id"
+    t.decimal "paid"
+    t.decimal "discount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_bookings_on_event_id"

@@ -64,4 +64,22 @@ class Event < ApplicationRecord
     end
     return event_images
   end
+
+  # Analytics
+  def self.analytics(period_in_days)
+    new_events_since = 0
+    last_new_event = Event.last.created_at if Event.last
+
+    Event.all.each do |e|
+        if e.created_at > Date.today - period_in_days.day
+            new_events_since += 1
+        end
+    end
+
+    return {
+        count_all: Event.count,
+        last_new: last_new_event,
+        count_since: new_events_since,
+    }
+  end
 end

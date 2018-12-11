@@ -2,6 +2,15 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by(id:params[:id])
+        if params[:days] && current_user && current_user == @user && current_user.master?
+            @user_analytics = User.analytics(params[:days].to_i)
+            @event_analytics = Event.analytics(params[:days].to_i)
+            @booking_analytics = Booking.analytics(params[:days].to_i)
+        elsif current_user && current_user == @user && current_user.master?
+            @user_analytics = User.analytics(30)
+            @event_analytics = Event.analytics(30)
+            @booking_analytics = Booking.analytics(30)
+        end
     end
 
     def new
