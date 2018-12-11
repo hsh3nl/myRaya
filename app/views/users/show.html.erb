@@ -105,9 +105,17 @@
                 </h5>
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item"><span class='text-muted'>- U S E R S -</span>
-                        <br><span class="badge badge-pill badge-light "><%=@user_analytics[:users][:count_all]%></span> total user(s)
+                        <br><span class="badge badge-pill badge-light "><%=@user_analytics[:users][:count_all]%></span> user(s)
                         <br><span class="badge badge-pill badge-light"><%=@user_analytics[:users][:count_since].to_s%></span> new users since <%= if params[:days] then params[:days] else '30' end %> day(s) ago 
+                        <br><span class="badge badge-pill badge-light "><%=@user_analytics[:all_roles][:customer_count_all]%></span> customers(s)
+                        <br><span class="badge badge-pill badge-light "><%=@user_analytics[:all_roles][:moderator_count_all]%></span> moderator(s)
+                        <br><span class="badge badge-pill badge-light "><%=@user_analytics[:all_roles][:moderator_count_all]%></span> master(s)                        
                         <br><span class="badge badge-pill badge-light">Latest Sign Up :</span> <%=@user_analytics[:users][:last_new].to_s%>
+                    </li>
+                    <li class="list-group-item"><span class='text-muted'>- R O L E S -</span>
+                        <br><span class="badge badge-pill badge-light "><%=@user_analytics[:all_roles][:customer_count_all]%></span> customers(s)
+                        <br><span class="badge badge-pill badge-light "><%=@user_analytics[:all_roles][:moderator_count_all]%></span> moderator(s)
+                        <br><span class="badge badge-pill badge-light "><%=@user_analytics[:all_roles][:master_count_all]%></span> master(s)                        
                     </li>
                     <li class="list-group-item"><span class='text-muted'>- E V E N T S -</span>
                         <br><span class="badge badge-pill badge-light"><%=@event_analytics[:count_all]%></span> total event(s)
