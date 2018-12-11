@@ -11,19 +11,20 @@
         <hr class="col-11">
         <div class="w-100 mb-2"></div>
         <span class='mb-3'>- Personal Details -</span>
-        <% if @user.image? %>
-        <div id='profile-img' class='d-flex justify-content-center'>
-            <% if @user.image? %>
-                <%= image_tag(@user.image.url, alt: 'Image', id:'profile-pix')%>
-            <% else %>
-                <%= image_tag(image_url("no_pix.png"), alt: 'Image')%>
-            <% end %>
-        </div>
+        <div class="w-100 mb-2"></div>
+        <% if @user.image? %>        
+          <div id='profile-img' class='d-flex justify-content-center'>
+          <%= image_tag(@user.image.url(:display), alt: 'Image', id:'profile-pix')%>
+          </div>
+        <% else %>
+          <div id='profile-img' class='d-flex justify-content-center'>
+          <%= image_tag(image_url("no_pix.png"), alt: 'Image', id:'profile-pix')%>
+          </div>
         <% end %>
         <div class="w-100 mb-3"></div>
       
+      <%= form_with model:@user, local: true  do |form| %>
       <div class="input-group mb-3">
-        <%= form_with model:@user, local: true  do |form| %>
         <div class="input-group-prepend">
           <span class="input-group-text form-control-sm" id="basic-addon1" style='width:130px;'><small>First Name</small></span>
         </div>

@@ -54,9 +54,8 @@ gem 'braintree'
 # HTTP requests with http gem
 gem 'http'
 
-# AWS S3
-gem 'carrierwave-aws'
-gem 'aws-sdk-rails'
+# Cloudinary photo upload
+gem 'cloudinary'
 
 # END
 
@@ -80,7 +79,7 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-  gem 'factory_girl_rails'
+  gem "factory_bot_rails"
   gem 'shoulda-callback-matchers'
   gem 'rails-controller-testing'
   gem 'capybara'

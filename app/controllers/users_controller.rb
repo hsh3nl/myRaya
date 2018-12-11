@@ -38,6 +38,9 @@ class UsersController < ApplicationController
         password = user_params[:password]
         if password == user_params[:password_confirmation] && @user.try(:authenticate, password)
             if @user.update(first_name: user_params[:first_name], last_name: user_params[:last_name], email: user_params[:email], tel_no: user_params[:tel_no], gender: user_params[:gender], image: user_params[:image])
+                if user_params[:remove_image] == '1'
+                    @user.image.remove!
+                end
                 flash[:success] = ['Profile details successfully updated.']
                 redirect_to @user
             else 
