@@ -74,7 +74,7 @@
                     <li class="list-group-item text-center"><small class='text-muted'>- U P C O M I N G &nbsp E V E N T S -</small><br><%=@event.user.events.count%></li>
                     <% if current_user && current_user == @event.user %>
                       <li class="list-group-item text-center"><%= button_to "U N L I S T", event_path(@event), method: :delete, data: { confirm: "Are you sure you want to remove this event?" }, class:'btn btn-lg btn-danger btn-block' %></li> 
-                      <li class="list-group-item text-center"><a href="/events/<%=@event.id%>/edit" class="btn btn-lg pink-btn btn-block">E D I T &nbsp&nbsp E V E N T</a></li>
+                      <li class="list-group-item text-center"><a href="/events/<%=@event.id%>/edit" class="btn btn-lg pink-btn btn-block" data-turbolinks="false">E D I T &nbsp&nbsp E V E N T</a></li>
                     <% end %>
                     <li class="list-group-item text-center"><a href="/users/<%=@event.user_id%>" class="btn btn-lg pink-btn w-100">S E E &nbsp&nbsp P R O F I L E</a></li>
                   </ul>
