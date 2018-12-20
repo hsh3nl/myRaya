@@ -28,6 +28,7 @@ class EventUploader < CarrierWave::Uploader::Base
   elsif Rails.env.production?
     include Cloudinary::CarrierWave
     process :tags => ["event pix"]
+    process :tags => ["myraya"]
 
     version :thumb do
       process :eager => true
